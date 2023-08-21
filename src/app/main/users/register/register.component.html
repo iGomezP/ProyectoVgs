@@ -1,0 +1,26 @@
+<main class="mx-2 md:flex md:items-center md:justify-center md:mt-2 gap-[50px]">
+	<h1 class="text-5xl font-extrabold hidden md:block">Hi!<br>Welcome to the best <br> video games store!</h1>
+	<div>
+		<p-fieldset>
+			<ng-template pTemplate="header">
+				<div class="flex items-center text-primary">
+					<span class="pi pi-user mr-2"></span>
+					<span class="font-bold text-lg">Create account</span>
+				</div>
+			</ng-template>
+			<div>
+				<form #registerForm="ngForm" (ngSubmit)="register()" class="flex flex-col gap-3">
+					<p>{{newUser | json}}</p>
+					<input pInputText placeholder="Email" type="text" id="email" required [(ngModel)]="newUser.email" name="email"
+						#email="ngModel">
+					<p-password placeholder="Password" [toggleMask]="true" id="password" required [(ngModel)]="newUser.password"
+						name="password"></p-password>
+					<div class="mt-3">
+						<p-button class="buttons-form w-full" label="Register" type="submit"
+							[disabled]="!registerForm.form.valid"></p-button>
+					</div>
+				</form>
+			</div>
+		</p-fieldset>
+	</div>
+</main>

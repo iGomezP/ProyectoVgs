@@ -1,0 +1,39 @@
+:host ::ng-deep {
+  .p-sidebar-header {
+    border-bottom: 1px solid #383838;
+  }
+  .p-slidemenu {
+    border: none !important;
+  }
+  .p-sidebar-close-icon {
+    font-size: 1.2rem !important;
+  }
+  .p-slidemenu .p-menuitem-separator {
+    border-top: 1px solid #383838;
+    margin: 0.25rem 0;
+  }
+
+  .p-button.p-button-text {
+    color: #000;
+  }
+
+  .pi-user,
+  .pi-bars,
+  .pi-shopping-cart {
+    font-size: 1.5rem;
+  }
+
+  p-menubarsub {
+    font-size: 1.25rem;
+  }
+
+  p-menubarsub,
+  .p-menubar-end {
+    margin: 0 auto;
+  }
+}
+
+.header-link {
+  text-decoration: none;
+  color: #000;
+}

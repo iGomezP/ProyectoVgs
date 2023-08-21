@@ -1,0 +1,82 @@
+<header class="p-2">
+	<!-- Mobile -->
+	<div class="md:hidden flex items-center justify-between border-b-2 border-gray-400 h-3rem">
+		<div>
+			<p-button styleClass="p-button-rounded p-button-text" (click)="sidebarStore = true"
+				icon="pi pi-bars button-bars"></p-button>
+			<p-sidebar #StoreSidebar [(visible)]="sidebarStore" styleClass="max-w-max">
+				<ng-template pTemplate="header">
+					<a routerLink="/" (click)="sidebarStore = false">
+						<img class="max-w-[8rem]" src="assets/logos/logoMovil.svg" alt="Logo">
+					</a>
+				</ng-template>
+				<ng-template pTemplate="content">
+					<p-slideMenu [model]="mainMenuItems" [viewportHeight]="600">
+					</p-slideMenu>
+				</ng-template>
+				<ng-template pTemplate="closeicon">
+					<fa-icon [icon]="faIcons.close"></fa-icon>
+				</ng-template>
+			</p-sidebar>
+		</div>
+		<div>
+			<a routerLink="/">
+				<img class="max-w-[12rem]" src="assets/logos/logoFull.svg" alt="Logo">
+			</a>
+		</div>
+		<div>
+			<p-button styleClass="p-button-rounded p-button-text" class="mr-px" icon="pi pi-shopping-cart"></p-button>
+			<p-sidebar #UserSidebar [(visible)]="sidebarUser" styleClass="w-7" position="right">
+				<ng-template pTemplate="header">
+					<a routerLink="/" (click)="sidebarStore = false">
+						<img class="max-w-[8rem]" src="assets/logos/logoMovil.svg" alt="Logo">
+					</a>
+				</ng-template>
+				<ng-template pTemplate="closeicon">
+					<fa-icon [icon]="faIcons.close"></fa-icon>
+				</ng-template>
+				<div class="mt-4 flex flex-col gap-3">
+					<p-button class="buttons-form" styleClass="w-full" icon="pi pi-sign-in" label="Log In" routerLink="/login"
+						(click)="sidebarUser = false"></p-button>
+					<p-button class="buttons-form" styleClass="w-full" icon="pi pi-sign-out" label="Register"
+						routerLink="/register" (click)="sidebarUser = false"></p-button>
+				</div>
+			</p-sidebar>
+			<p-button styleClass="p-button-rounded p-button-text" (click)="sidebarUser = true" icon="pi pi-user"></p-button>
+		</div>
+	</div>
+	<!-- Desktop -->
+	<div class="hidden md:block">
+		<p-menubar [model]="mainMenuItems">
+			<ng-template pTemplate="start">
+				<div class="flex mx-3">
+					<a routerLink="/">
+						<img src="assets/logos/logoFull.svg" alt="Logo">
+					</a>
+				</div>
+			</ng-template>
+			<ng-template pTemplate="menuicon">
+				<i class="fa-solid fa-gamepad"></i>
+			</ng-template>
+			<ng-template pTemplate="end">
+				<div class="flex gap-2 text-xl items-center">
+					<div>
+						<p-button styleClass="p-button-rounded p-button-text p-button-lg" badge="10">
+							<fa-icon [icon]="faIcons.cart"></fa-icon>
+						</p-button>
+					</div>
+					<div>
+						<a class="header-link" routerLink="/login">
+							<fa-icon [icon]="faIcons.user"></fa-icon>
+							Log In
+						</a>
+						<span>&nbsp;|&nbsp;</span>
+						<a class="header-link" routerLink="/register">
+							Register
+						</a>
+					</div>
+				</div>
+			</ng-template>
+		</p-menubar>
+	</div>
+</header>
