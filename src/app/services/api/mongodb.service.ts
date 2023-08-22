@@ -6,9 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MongodbService {
-  mongoUrl =
-    'mongodb+srv://VsgAdmin:tUSTHSlyzi0Xnsix@clustervgs.wloqrkp.mongodb.net/';
-
+  
   constructor(private httpClient: HttpClient) {}
 
   getCollection(collectionName: string): Observable<any[]> {
