@@ -4,11 +4,12 @@ import { HomeComponent } from './main/home/home.component';
 import { HealthCheckComponent } from './main/health-check/health-check.component';
 import { LoginComponent } from './main/users/login/login.component';
 import { RegisterComponent } from './main/users/register/register.component';
+import { MsalGuard } from '@azure/msal-angular';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'health', component: HealthCheckComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [MsalGuard] },
   { path: 'register', component: RegisterComponent },
 ];
 
