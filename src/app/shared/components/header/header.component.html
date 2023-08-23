@@ -15,7 +15,7 @@
 					</p-slideMenu>
 				</ng-template>
 				<ng-template pTemplate="closeicon">
-					<fa-icon [icon]="faIcons.close"></fa-icon>
+					<fa-icon [icon]="iconClose"></fa-icon>
 				</ng-template>
 			</p-sidebar>
 		</div>
@@ -33,7 +33,7 @@
 					</a>
 				</ng-template>
 				<ng-template pTemplate="closeicon">
-					<fa-icon [icon]="faIcons.close"></fa-icon>
+					<fa-icon [icon]="iconClose"></fa-icon>
 				</ng-template>
 				<div class="mt-4 flex flex-col gap-3">
 					<p-button class="buttons-form" styleClass="w-full" icon="pi pi-sign-in" label="Log In" routerLink="/login"
@@ -59,29 +59,7 @@
 				<i class="fa-solid fa-gamepad"></i>
 			</ng-template>
 			<ng-template pTemplate="end">
-				<div class="flex gap-2 text-xl items-center">
-					<div>
-						<p-button styleClass="p-button-rounded p-button-text p-button-lg" badge="10">
-							<fa-icon [icon]="faIcons.cart"></fa-icon>
-						</p-button>
-					</div>
-					<div>
-						<a class="header-link" routerLink="/login">
-							<fa-icon [icon]="faIcons.userLogin"></fa-icon>
-							Log In
-						</a>
-						<span>&nbsp;|&nbsp;</span>
-						<a class="header-link" routerLink="/register">
-							Register
-						</a>
-					</div>
-					<div>
-						<a class="header-link" routerLink="/logout">
-							<fa-icon [icon]="faIcons.userLogout"></fa-icon>
-							Log Out
-						</a>
-					</div>
-				</div>
+				<app-user-buttons></app-user-buttons>
 			</ng-template>
 		</p-menubar>
 	</div>

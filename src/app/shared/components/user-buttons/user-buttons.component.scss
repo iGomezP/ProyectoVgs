@@ -1,0 +1,22 @@
+.header-link {
+  text-decoration: none;
+  color: #000;
+}
+
+:host ::ng-deep {
+  .p-button.p-button-text {
+    color: #000;
+  }
+}
+
+.vertical-separator {
+  display: flex;
+  align-items: center;
+}
+
+.vertical-separator span {
+  display: block;
+  width: 2px; /* Adjust the width as needed */
+  height: 20px; /* Adjust the height to make it bigger */
+  background-color: #ccc; /* Adjust the color as needed */
+}

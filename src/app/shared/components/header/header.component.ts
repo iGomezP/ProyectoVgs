@@ -1,11 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import {
-  faCartShopping,
-  faCircleXmark,
-  faRightToBracket,
-  faRightFromBracket,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { Sidebar } from 'primeng/sidebar';
 import { VgsApiService } from 'src/app/services/api/vgs-api.service';
 import { Platform } from 'src/app/models/platform.model';
@@ -21,19 +16,10 @@ export class HeaderComponent implements OnInit {
   mainMenuItems: MenuItem[] | undefined;
   sidebarStore: boolean = false;
   sidebarUser: boolean = false;
-  faIcons = {
-    close: faCircleXmark,
-    userLogin: faRightToBracket,
-    userLogout: faRightFromBracket,
-    cart: faCartShopping,
-  };
+  iconClose = faCircleXmark;
   platforms: Platform[] = [];
 
-  constructor(
-    private vgsApi: VgsApiService,
-    private toastService: ToastService,
-    public generalAuxService: GeneralAuxService
-  ) {}
+  constructor(public generalAuxService: GeneralAuxService) {}
 
   ngOnInit(): void {
     this.mainMenuItems = [
@@ -107,21 +93,9 @@ export class HeaderComponent implements OnInit {
       //   command: () => this.closeSideBar(),
       // },
     ];
-    this.getPlatforms();
   }
 
   closeSideBar() {
     this.sidebarStore = false;
-  }
-
-  getPlatforms() {
-    this.vgsApi.getPlatforms().subscribe({
-      next: (res) => {
-        this.platforms = res;
-      },
-      error: (error) => {
-        this.toastService.showToast(ToastService.ERROR, 'Error', error.error);
-      },
-    });
   }
 }

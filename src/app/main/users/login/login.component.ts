@@ -21,14 +21,11 @@ export class LoginComponent {
     private fromBuilder: FormBuilder,
     private loginService: VgsApiService,
     private toastService: ToastService,
-    private router: Router,
-    private msalAuthService: MsalService
+    private router: Router
   ) {
     this.loginForm = this.fromBuilder.group({
       email: ['', [Validators.required, Validators.email]],
     });
-
-    this.isIframe = window !== window.parent && !window.opener;
   }
 
   login() {
@@ -51,24 +48,5 @@ export class LoginComponent {
         },
       });
     }
-  }
-
-  msalLogin() {
-    //# Msal Login
-    this.msalAuthService.loginPopup().subscribe({
-      next: (result) => {
-        console.log(result);
-        this.setLoginDisplay();
-      },
-      error: (error) => {
-        console.log(error);
-        //this.toastService.showToast(ToastService.ERROR, 'Login Error', error);
-      },
-    });
-  }
-
-  setLoginDisplay() {
-    this.loginDisplay =
-      this.msalAuthService.instance.getAllAccounts().length > 0;
   }
 }

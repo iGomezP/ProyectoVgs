@@ -2,24 +2,36 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { MainModule } from './main/main.module';
 import {
-  MsalModule,
-  MsalService,
-  MsalGuard,
-  MsalInterceptor,
+  BrowserCacheLocation,
+  IPublicClientApplication,
+  InteractionType,
+  LogLevel,
+  PublicClientApplication,
+} from '@azure/msal-browser';
+
+import {
+  MSAL_GUARD_CONFIG,
+  MSAL_INSTANCE,
+  MSAL_INTERCEPTOR_CONFIG,
   MsalBroadcastService,
+  MsalGuard,
+  MsalGuardConfiguration,
+  MsalInterceptor,
+  MsalModule,
   MsalRedirectComponent,
+  MsalService,
 } from '@azure/msal-angular';
 import {
-  PublicClientApplication,
-  InteractionType,
-  BrowserCacheLocation,
-} from '@azure/msal-browser';
+  protectedResources,
+  msalConfig,
+  b2cPolicies,
+} from './config/msalAuth.config';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,51 +44,43 @@ import {
     MainModule,
     MsalModule.forRoot(
       new PublicClientApplication({
-        // MSAL Configuration
         auth: {
-          clientId: '91221174-771e-445c-9713-1f7ae3127ec9',
-          authority: 'https://login.microsoftonline.com/common/',
-          redirectUri: 'https://vgsapp.azurewebsites.net/',
-          postLogoutRedirectUri: 'https://vgsapp.azurewebsites.net/',
+          clientId: '6b8abece-3842-40a7-8e30-b699b73a0bae', // This is the ONLY mandatory field that you need to supply.
+          authority: b2cPolicies.authorities.signUpSignIn.authority, // Defaults to "https://login.microsoftonline.com/common"
+          knownAuthorities: [b2cPolicies.authorityDomain],
+          redirectUri: 'http://localhost:4200/', // Points to window.location.origin. You must register this URI on Azure portal/App Registration.
+          // postLogoutRedirectUri: 'http://localhost:4200', // Indicates the page to navigate after logout.
+          // navigateToLoginRequestUrl: true, // If "true", will navigate back to the original request location before processing the auth code response.
         },
         cache: {
-          cacheLocation: BrowserCacheLocation.LocalStorage,
-          storeAuthStateInCookie: true, // set to true for IE 11
+          cacheLocation: BrowserCacheLocation.LocalStorage, // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.
+          storeAuthStateInCookie: true, // Set this to "true" if you are having issues on IE11 or Edge
         },
         system: {
           loggerOptions: {
-            loggerCallback: () => {},
+            loggerCallback(logLevel: LogLevel, message: string) {
+              console.log(message);
+            },
+            logLevel: LogLevel.Verbose,
             piiLoggingEnabled: false,
           },
         },
       }),
       {
-        interactionType: InteractionType.Redirect, // MSAL Guard Configuration
+        interactionType: InteractionType.Popup,
+        authRequest: {
+          scopes: [],
+        },
       },
       {
-        interactionType: InteractionType.Redirect, // MSAL Interceptor Configuration
+        interactionType: InteractionType.Popup,
         protectedResourceMap: new Map([
-          ['https://graph.microsoft.com', ['user.read']],
-          [
-            'https://vgsapinacho.azurewebsites.net/api/user',
-            ['customscope.read'],
-          ],
-          ['https://vgsapp.azurewebsites.net/', null],
+          ['https://graph.microsoft.com/v1.0/me', ['user.read']],
         ]),
       }
     ),
   ],
-  providers: [
-    MessageService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MsalInterceptor,
-      multi: true,
-    },
-    MsalService,
-    MsalGuard,
-    MsalBroadcastService,
-  ],
+  providers: [MessageService, MsalGuard],
   bootstrap: [AppComponent, MsalRedirectComponent],
 })
 export class AppModule {

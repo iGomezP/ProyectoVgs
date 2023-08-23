@@ -10,9 +10,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { UserButtonsComponent } from './components/user-buttons/user-buttons.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, NotFoundComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    NotFoundComponent,
+    UserButtonsComponent,
+  ],
   imports: [
     CommonModule,
     MenuModule,

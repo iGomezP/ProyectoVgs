@@ -7,7 +7,7 @@
 					<span class="font-bold text-lg">Log In</span>
 				</div>
 			</ng-template>
-			<form [formGroup]="loginForm" (ngSubmit)="msalLogin()">
+			<form [formGroup]="loginForm" (ngSubmit)="login()">
 				<div class="p-field">
 					<input id="email" type="email" pInputText formControlName="email" required placeholder="Email" class="w-full">
 					<small *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched" class="p-error">
