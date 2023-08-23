@@ -3,6 +3,7 @@ import {
   Configuration,
   LogLevel,
 } from '@azure/msal-browser';
+import { environment } from 'src/environments/environment';
 
 const isIE =
   window.navigator.userAgent.indexOf('MSIE ') > -1 ||
@@ -35,7 +36,7 @@ export const msalConfig: Configuration = {
     clientId: 'bc89304e-167f-482e-8344-9faceecb5b95', // This is the ONLY mandatory field that you need to supply.
     authority: b2cPolicies.authorities.signUpSignIn.authority, // Defaults to "https://login.microsoftonline.com/common"
     knownAuthorities: [b2cPolicies.authorityDomain],
-    redirectUri: '/', // Points to window.location.origin. You must register this URI on Azure portal/App Registration.
+    redirectUri: environment.urlHost, // Points to window.location.origin. You must register this URI on Azure portal/App Registration.
     // postLogoutRedirectUri: 'http://localhost:4200', // Indicates the page to navigate after logout.
     // navigateToLoginRequestUrl: true, // If "true", will navigate back to the original request location before processing the auth code response.
   },
