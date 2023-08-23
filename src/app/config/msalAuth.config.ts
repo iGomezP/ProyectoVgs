@@ -35,7 +35,7 @@ export const msalConfig: Configuration = {
     clientId: '6b8abece-3842-40a7-8e30-b699b73a0bae', // This is the ONLY mandatory field that you need to supply.
     authority: b2cPolicies.authorities.signUpSignIn.authority, // Defaults to "https://login.microsoftonline.com/common"
     knownAuthorities: [b2cPolicies.authorityDomain],
-    redirectUri: 'http://localhost:4200/', // Points to window.location.origin. You must register this URI on Azure portal/App Registration.
+    redirectUri: '/', // Points to window.location.origin. You must register this URI on Azure portal/App Registration.
     // postLogoutRedirectUri: 'http://localhost:4200', // Indicates the page to navigate after logout.
     // navigateToLoginRequestUrl: true, // If "true", will navigate back to the original request location before processing the auth code response.
   },

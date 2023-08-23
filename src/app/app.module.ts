@@ -45,7 +45,7 @@ import {
     MsalModule.forRoot(
       new PublicClientApplication({
         auth: {
-          clientId: '6b8abece-3842-40a7-8e30-b699b73a0bae', // This is the ONLY mandatory field that you need to supply.
+          clientId: 'bc89304e-167f-482e-8344-9faceecb5b95', // This is the ONLY mandatory field that you need to supply.
           authority: b2cPolicies.authorities.signUpSignIn.authority, // Defaults to "https://login.microsoftonline.com/common"
           knownAuthorities: [b2cPolicies.authorityDomain],
           redirectUri: 'http://localhost:4200/', // Points to window.location.origin. You must register this URI on Azure portal/App Registration.

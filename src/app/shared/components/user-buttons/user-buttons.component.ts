@@ -218,6 +218,7 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
   }
 
   login(userFlowRequest?: RedirectRequest | PopupRequest) {
+    console.log('userFlow', userFlowRequest);
     if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
       if (this.msalGuardConfig.authRequest) {
         this.authService
