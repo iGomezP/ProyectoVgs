@@ -35,8 +35,7 @@ import {
         // MSAL Configuration
         auth: {
           clientId: '8134e685-52f7-47cf-b707-bbc0755219d2',
-          authority:
-            'https://login.microsoftonline.com/92547f39-f005-4afd-90b5-668bf98501c2',
+          authority: 'https://login.microsoftonline.com/common/',
           redirectUri: 'https://vgsapp.azurewebsites.net/login',
           postLogoutRedirectUri: 'https://vgsapp.azurewebsites.net/',
         },
