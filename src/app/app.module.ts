@@ -34,9 +34,9 @@ import {
       new PublicClientApplication({
         // MSAL Configuration
         auth: {
-          clientId: '8134e685-52f7-47cf-b707-bbc0755219d2',
+          clientId: '91221174-771e-445c-9713-1f7ae3127ec9',
           authority: 'https://login.microsoftonline.com/common/',
-          redirectUri: 'https://vgsapp.azurewebsites.net/login',
+          redirectUri: 'https://vgsapp.azurewebsites.net/',
           postLogoutRedirectUri: 'https://vgsapp.azurewebsites.net/',
         },
         cache: {
@@ -61,7 +61,7 @@ import {
             'https://vgsapinacho.azurewebsites.net/api/user',
             ['customscope.read'],
           ],
-          ['http://localhost:4200/', null],
+          ['https://vgsapp.azurewebsites.net/', null],
         ]),
       }
     ),
