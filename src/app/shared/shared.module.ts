@@ -9,9 +9,10 @@ import { SidebarModule } from 'primeng/sidebar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { FooterComponent } from './components/footer/footer.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [HeaderComponent, FooterComponent, NotFoundComponent],
   imports: [
     CommonModule,
     MenuModule,
@@ -21,6 +22,6 @@ import { FooterComponent } from './components/footer/footer.component';
     SidebarModule,
     SlideMenuModule,
   ],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent, NotFoundComponent],
 })
 export class SharedModule {}

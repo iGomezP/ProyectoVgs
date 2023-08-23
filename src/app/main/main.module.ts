@@ -13,6 +13,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
+import { ProfileComponent } from './users/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { DividerModule } from 'primeng/divider';
     HealthCheckComponent,
     LoginComponent,
     RegisterComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

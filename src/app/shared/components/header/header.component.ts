@@ -3,12 +3,14 @@ import { MenuItem } from 'primeng/api';
 import {
   faCartShopping,
   faCircleXmark,
-  faUser,
+  faRightToBracket,
+  faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 import { Sidebar } from 'primeng/sidebar';
 import { VgsApiService } from 'src/app/services/api/vgs-api.service';
 import { Platform } from 'src/app/models/platform.model';
-import { ToastService } from '../../../services/axuliary/toast.service';
+import { ToastService } from '../../../services/auxiliary/toast.service';
+import { GeneralAuxService } from 'src/app/services/auxiliary/general-aux.service';
 
 @Component({
   selector: 'app-header',
@@ -21,14 +23,16 @@ export class HeaderComponent implements OnInit {
   sidebarUser: boolean = false;
   faIcons = {
     close: faCircleXmark,
-    user: faUser,
+    userLogin: faRightToBracket,
+    userLogout: faRightFromBracket,
     cart: faCartShopping,
   };
   platforms: Platform[] = [];
 
   constructor(
     private vgsApi: VgsApiService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    public generalAuxService: GeneralAuxService
   ) {}
 
   ngOnInit(): void {

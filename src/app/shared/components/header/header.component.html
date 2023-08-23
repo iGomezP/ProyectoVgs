@@ -1,4 +1,4 @@
-<header class="p-2">
+<header *ngIf="!generalAuxService.hideBars" class="p-2">
 	<!-- Mobile -->
 	<div class="md:hidden flex items-center justify-between border-b-2 border-gray-400 h-3rem">
 		<div>
@@ -67,12 +67,18 @@
 					</div>
 					<div>
 						<a class="header-link" routerLink="/login">
-							<fa-icon [icon]="faIcons.user"></fa-icon>
+							<fa-icon [icon]="faIcons.userLogin"></fa-icon>
 							Log In
 						</a>
 						<span>&nbsp;|&nbsp;</span>
 						<a class="header-link" routerLink="/register">
 							Register
+						</a>
+					</div>
+					<div>
+						<a class="header-link" routerLink="/logout">
+							<fa-icon [icon]="faIcons.userLogout"></fa-icon>
+							Log Out
 						</a>
 					</div>
 				</div>

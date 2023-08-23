@@ -34,10 +34,11 @@ import {
       new PublicClientApplication({
         // MSAL Configuration
         auth: {
-          clientId: '92547f39-f005-4afd-90b5-668bf98501c2',
+          clientId: '8134e685-52f7-47cf-b707-bbc0755219d2',
           authority:
             'https://login.microsoftonline.com/92547f39-f005-4afd-90b5-668bf98501c2',
           redirectUri: 'https://vgsapp.azurewebsites.net/login',
+          postLogoutRedirectUri: 'https://vgsapp.azurewebsites.net/',
         },
         cache: {
           cacheLocation: BrowserCacheLocation.LocalStorage,
@@ -54,12 +55,15 @@ import {
         interactionType: InteractionType.Redirect, // MSAL Guard Configuration
       },
       {
-        interactionType: InteractionType.Redirect,
+        interactionType: InteractionType.Redirect, // MSAL Interceptor Configuration
         protectedResourceMap: new Map([
-          ['https://graph.microsoft.com/v1.0/me', ['user.read']],
-          //['https://api.myapplication.com/users/*', ['customscope.read']],
-          ['http://localhost:4200/about/', null],
-        ]), // MSAL Interceptor Configuration
+          ['https://graph.microsoft.com', ['user.read']],
+          [
+            'https://vgsapinacho.azurewebsites.net/api/user',
+            ['customscope.read'],
+          ],
+          ['http://localhost:4200/', null],
+        ]),
       }
     ),
   ],
