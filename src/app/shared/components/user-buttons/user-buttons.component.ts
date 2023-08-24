@@ -1,23 +1,25 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import {
-  MSAL_GUARD_CONFIG,
-  MsalBroadcastService,
-  MsalGuardConfiguration,
   MsalService,
+  MsalBroadcastService,
+  MSAL_GUARD_CONFIG,
+  MsalGuardConfiguration,
 } from '@azure/msal-angular';
 import {
-  AccountInfo,
   AuthenticationResult,
+  InteractionStatus,
+  PopupRequest,
+  RedirectRequest,
   EventMessage,
   EventType,
-  IdTokenClaims,
-  InteractionStatus,
   InteractionType,
-  PopupRequest,
-  PromptValue,
-  RedirectRequest,
+  AccountInfo,
   SsoSilentRequest,
+  IdTokenClaims,
+  PromptValue,
 } from '@azure/msal-browser';
+import { Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 import {
   faCartShopping,
   faCircleXmark,
@@ -26,8 +28,8 @@ import {
   faUserPlus,
   faUserPen,
 } from '@fortawesome/free-solid-svg-icons';
-import { Subject, filter, takeUntil } from 'rxjs';
 import { b2cPolicies } from 'src/app/config/msalAuth.config';
+import { environment } from 'src/environments/environment';
 
 type IdTokenClaimsWithPolicyId = IdTokenClaims & {
   acr?: string;
@@ -48,6 +50,8 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
     userEdit: faUserPen,
     cart: faCartShopping,
   };
+  sidebarUser: boolean = false;
+  isIframe = false;
   loginDisplay = false;
   private readonly _destroying$ = new Subject<void>();
 
@@ -58,15 +62,10 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.isIframe = window !== window.parent && !window.opener;
     this.setLoginDisplay();
 
-    // Optional - This will enable ACCOUNT_ADDED and ACCOUNT_REMOVED events emitted when a user logs in or out of another tab or window
-    this.authService.instance.enableAccountStorageEvents();
-
-    /**
-     * You can subscribe to MSAL events as shown below. For more info,
-     * visit: https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/docs/v2-docs/events.md
-     */
+    this.authService.instance.enableAccountStorageEvents(); // Optional - This will enable ACCOUNT_ADDED and ACCOUNT_REMOVED events emitted when a user logs in or out of another tab or window
     this.msalBroadcastService.msalSubject$
       .pipe(
         filter(
@@ -77,7 +76,7 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
       )
       .subscribe((result: EventMessage) => {
         if (this.authService.instance.getAllAccounts().length === 0) {
-          window.location.pathname = 'http://localhost:4200/';
+          window.location.pathname = '/';
         } else {
           this.setLoginDisplay();
         }
@@ -137,7 +136,8 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
                 ((account.idTokenClaims as IdTokenClaimsWithPolicyId).acr ===
                   b2cPolicies.names.signUpSignIn ||
                   (account.idTokenClaims as IdTokenClaimsWithPolicyId).tfp ===
-                    b2cPolicies.names.signUpSignIn)
+                    b2cPolicies.names.signUpSignIn),
+              takeUntil(this._destroying$)
             );
 
           let signUpSignInFlowRequest: SsoSilentRequest = {
@@ -182,6 +182,7 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
         takeUntil(this._destroying$)
       )
       .subscribe((result: EventMessage) => {
+        console.log(result);
         // Checking for the forgot password error. Learn more about B2C error codes at
         // https://learn.microsoft.com/azure/active-directory-b2c/error-codes
         if (result.error && result.error.message.indexOf('AADB2C90118') > -1) {
@@ -205,20 +206,29 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
      * Note: Basic usage demonstrated. Your app may require more complicated account selection logic
      */
     let activeAccount = this.authService.instance.getActiveAccount();
-    console.log('Active Account:', activeAccount);
-
+    console.log('Active Account', activeAccount);
     if (
       !activeAccount &&
       this.authService.instance.getAllAccounts().length > 0
     ) {
       let accounts = this.authService.instance.getAllAccounts();
+      console.log('Accounts', accounts);
       // add your code for handling multiple accounts here
       this.authService.instance.setActiveAccount(accounts[0]);
     }
   }
 
+  loginRedirect() {
+    if (this.msalGuardConfig.authRequest) {
+      this.authService.loginRedirect({
+        ...this.msalGuardConfig.authRequest,
+      } as RedirectRequest);
+    } else {
+      this.authService.loginRedirect();
+    }
+  }
+
   login(userFlowRequest?: RedirectRequest | PopupRequest) {
-    console.log('userFlow', userFlowRequest);
     if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
       if (this.msalGuardConfig.authRequest) {
         this.authService
@@ -249,7 +259,13 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.authService.logout();
+    if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
+      this.authService.logoutPopup({
+        mainWindowRedirectUri: '/',
+      });
+    } else {
+      this.authService.logoutRedirect();
+    }
   }
 
   editProfile() {

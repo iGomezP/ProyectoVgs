@@ -8,13 +8,15 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
 import { ProfileComponent } from './main/users/profile/profile.component';
 import { BrowserUtils } from '@azure/msal-browser';
 import { MsalGuard } from '@azure/msal-angular';
+import { LoginFailedComponent } from './shared/components/login-failed/login-failed.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'health', component: HealthCheckComponent },
-  { path: 'login', component: LoginComponent, canActivate: [MsalGuard] },
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [MsalGuard] },
+  { path: 'login-failed', component: LoginFailedComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

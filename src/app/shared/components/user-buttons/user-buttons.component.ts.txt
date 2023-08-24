@@ -5,7 +5,16 @@ import {
   MsalGuardConfiguration,
   MsalService,
 } from '@azure/msal-angular';
-import { InteractionStatus, RedirectRequest } from '@azure/msal-browser';
+import {
+  AuthenticationResult,
+  EventMessage,
+  EventType,
+  InteractionStatus,
+  InteractionType,
+  PopupRequest,
+  RedirectRequest,
+  SsoSilentRequest,
+} from '@azure/msal-browser';
 import {
   faCartShopping,
   faCircleXmark,
@@ -15,6 +24,7 @@ import {
   faUserPen,
 } from '@fortawesome/free-solid-svg-icons';
 import { Subject, filter, takeUntil } from 'rxjs';
+import { b2cPolicies, silentRequest } from 'src/app/config/msalAuth.config';
 
 @Component({
   selector: 'app-user-buttons',
@@ -31,6 +41,7 @@ export class UserButtonsComponent implements OnInit {
     cart: faCartShopping,
   };
   isIframe = false;
+  sidebarUser: boolean = false;
   loginDisplay = false;
   private readonly _destroying$ = new Subject<void>();
 
@@ -41,25 +52,65 @@ export class UserButtonsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.msalBroadcastService.inProgress$
+    const silentRequestComp: SsoSilentRequest = silentRequest;
+
+    this.authService.ssoSilent(silentRequestComp).subscribe({
+      next: (result: AuthenticationResult) => {
+        console.log('SsoSilent succeeded!');
+        console.log(result);
+      },
+      error: (err) => {
+        this.authService.loginRedirect();
+      },
+    });
+
+    this.msalBroadcastService.msalSubject$
       .pipe(
         filter(
-          (status: InteractionStatus) => status === InteractionStatus.None
+          (msg: EventMessage) => msg.eventType === EventType.LOGIN_SUCCESS
         ),
         takeUntil(this._destroying$)
       )
-      .subscribe(() => {
-        this.setLoginDisplay();
+      .subscribe((result: EventMessage) => {
+        // do something with the result, such as accessing ID token
       });
+
+    // this.msalBroadcastService.inProgress$
+    //   .pipe(
+    //     filter(
+    //       (status: InteractionStatus) => status === InteractionStatus.None
+    //     ),
+    //     takeUntil(this._destroying$)
+    //   )
+    //   .subscribe(() => {
+    //     this.setLoginDisplay();
+    //   });
   }
 
   login() {
-    if (this.msalGuardConfig.authRequest) {
-      this.authService.logoutRedirect({
-        ...this.msalGuardConfig.authRequest,
-      } as RedirectRequest);
+    if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
+      if (this.msalGuardConfig.authRequest) {
+        this.authService
+          .loginPopup({ ...this.msalGuardConfig.authRequest } as PopupRequest)
+          .subscribe((response: AuthenticationResult) => {
+            console.log(response);
+            this.authService.instance.setActiveAccount(response.account);
+          });
+      } else {
+        this.authService
+          .loginPopup()
+          .subscribe((response: AuthenticationResult) => {
+            this.authService.instance.setActiveAccount(response.account);
+          });
+      }
     } else {
-      this.authService.loginRedirect();
+      if (this.msalGuardConfig.authRequest) {
+        this.authService.loginRedirect({
+          ...this.msalGuardConfig.authRequest,
+        } as RedirectRequest);
+      } else {
+        this.authService.loginRedirect();
+      }
     }
   }
 
@@ -71,6 +122,14 @@ export class UserButtonsComponent implements OnInit {
 
   setLoginDisplay() {
     this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
+  }
+
+  editProfile() {
+    let editProfileFlowRequest: RedirectRequest | PopupRequest = {
+      authority: b2cPolicies.authorities.editProfile.authority,
+      scopes: [],
+    };
+    this.login();
   }
 
   ngOnDestroy(): void {

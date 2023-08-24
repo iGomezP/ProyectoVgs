@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MsalService } from '@azure/msal-angular';
 import { User } from 'src/app/models/user.model';
 import { VgsApiService } from 'src/app/services/api/vgs-api.service';
 import { ToastService } from 'src/app/services/auxiliary/toast.service';
@@ -14,8 +13,6 @@ import { ToastService } from 'src/app/services/auxiliary/toast.service';
 export class LoginComponent {
   loginForm: FormGroup;
   userLogin!: User;
-  isIframe = false;
-  loginDisplay = false;
 
   constructor(
     private fromBuilder: FormBuilder,

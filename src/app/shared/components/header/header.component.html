@@ -24,26 +24,7 @@
 				<img class="max-w-[12rem]" src="assets/logos/logoFull.svg" alt="Logo">
 			</a>
 		</div>
-		<div>
-			<p-button styleClass="p-button-rounded p-button-text" class="mr-px" icon="pi pi-shopping-cart"></p-button>
-			<p-sidebar #UserSidebar [(visible)]="sidebarUser" styleClass="w-7" position="right">
-				<ng-template pTemplate="header">
-					<a routerLink="/" (click)="sidebarStore = false">
-						<img class="max-w-[8rem]" src="assets/logos/logoMovil.svg" alt="Logo">
-					</a>
-				</ng-template>
-				<ng-template pTemplate="closeicon">
-					<fa-icon [icon]="iconClose"></fa-icon>
-				</ng-template>
-				<div class="mt-4 flex flex-col gap-3">
-					<p-button class="buttons-form" styleClass="w-full" icon="pi pi-sign-in" label="Log In" routerLink="/login"
-						(click)="sidebarUser = false"></p-button>
-					<p-button class="buttons-form" styleClass="w-full" icon="pi pi-sign-out" label="Register"
-						routerLink="/register" (click)="sidebarUser = false"></p-button>
-				</div>
-			</p-sidebar>
-			<p-button styleClass="p-button-rounded p-button-text" (click)="sidebarUser = true" icon="pi pi-user"></p-button>
-		</div>
+		<app-user-buttons></app-user-buttons>
 	</div>
 	<!-- Desktop -->
 	<div class="hidden md:block">
@@ -63,4 +44,5 @@
 			</ng-template>
 		</p-menubar>
 	</div>
+
 </header>

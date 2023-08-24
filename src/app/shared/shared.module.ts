@@ -11,6 +11,7 @@ import { SlideMenuModule } from 'primeng/slidemenu';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UserButtonsComponent } from './components/user-buttons/user-buttons.component';
+import { LoginFailedComponent } from './components/login-failed/login-failed.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { UserButtonsComponent } from './components/user-buttons/user-buttons.com
     FooterComponent,
     NotFoundComponent,
     UserButtonsComponent,
+    LoginFailedComponent,
   ],
   imports: [
     CommonModule,
