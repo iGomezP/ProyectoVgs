@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   baseUrl: 'https://vgsapinacho.azurewebsites.net/',
   urlHost: 'https://vgsapp.azurewebsites.net/',
 };
