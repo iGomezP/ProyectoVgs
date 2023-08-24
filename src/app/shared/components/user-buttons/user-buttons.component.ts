@@ -29,7 +29,7 @@ import {
   faUserPen,
 } from '@fortawesome/free-solid-svg-icons';
 import { b2cPolicies } from 'src/app/config/msalAuth.config';
-import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 type IdTokenClaimsWithPolicyId = IdTokenClaims & {
   acr?: string;
@@ -58,7 +58,8 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private authService: MsalService,
-    private msalBroadcastService: MsalBroadcastService
+    private msalBroadcastService: MsalBroadcastService,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -208,9 +209,11 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
      * Note: Basic usage demonstrated. Your app may require more complicated account selection logic
      */
     let activeAccount = this.authService.instance.getActiveAccount();
-    console.log('Active Account', activeAccount);
 
     if (!activeAccount) {
+      localStorage.clear();
+      sessionStorage.clear();
+      this.cookieService.deleteAll();
     }
 
     if (
@@ -218,7 +221,7 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
       this.authService.instance.getAllAccounts().length > 0
     ) {
       let accounts = this.authService.instance.getAllAccounts();
-      console.log('Accounts', accounts);
+
       // add your code for handling multiple accounts here
       this.authService.instance.setActiveAccount(accounts[0]);
     }
