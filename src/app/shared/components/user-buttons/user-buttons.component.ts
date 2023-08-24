@@ -195,11 +195,13 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
       });
   }
 
-  setLoginDisplay() {
+  async setLoginDisplay() {
+    //await this.authService.instance.handleRedirectPromise();
     this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
   }
 
-  checkAndSetActiveAccount() {
+  async checkAndSetActiveAccount() {
+    await this.authService.instance.handleRedirectPromise();
     /**
      * If no active account set but there are accounts signed in, sets first account to active account
      * To use active account set here, subscribe to inProgress$ first in your component
@@ -207,6 +209,10 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
      */
     let activeAccount = this.authService.instance.getActiveAccount();
     console.log('Active Account', activeAccount);
+
+    if (!activeAccount) {
+    }
+
     if (
       !activeAccount &&
       this.authService.instance.getAllAccounts().length > 0
@@ -218,7 +224,8 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
     }
   }
 
-  loginRedirect() {
+  async loginRedirect() {
+    await this.authService.instance.loginRedirect();
     if (this.msalGuardConfig.authRequest) {
       this.authService.loginRedirect({
         ...this.msalGuardConfig.authRequest,
@@ -228,7 +235,13 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
     }
   }
 
-  login(userFlowRequest?: RedirectRequest | PopupRequest) {
+  async login(userFlowRequest?: RedirectRequest | PopupRequest) {
+    // const request = { scopes: ['openid', 'profile'] };
+    // const token = await this.authService.instance.loginPopup();
+    // const res = await this.authService.instance.acquireTokenPopup(request);
+    // console.log(token);
+    // console.log(res);
+    // await this.authService.instance.loginRedirect();
     if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
       if (this.msalGuardConfig.authRequest) {
         this.authService
@@ -258,7 +271,9 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
     }
   }
 
-  logout() {
+  async logout() {
+    await this.authService.instance.loginPopup();
+    await this.authService.instance.logoutRedirect();
     if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
       this.authService.logoutPopup({
         mainWindowRedirectUri: '/',
@@ -268,12 +283,12 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
     }
   }
 
-  editProfile() {
+  async editProfile() {
     let editProfileFlowRequest: RedirectRequest | PopupRequest = {
       authority: b2cPolicies.authorities.editProfile.authority,
       scopes: [],
     };
-    this.login(editProfileFlowRequest);
+    await this.login(editProfileFlowRequest);
   }
 
   // unsubscribe to events when component is destroyed

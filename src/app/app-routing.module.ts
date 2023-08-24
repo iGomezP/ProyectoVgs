@@ -13,7 +13,7 @@ import { LoginFailedComponent } from './shared/components/login-failed/login-fai
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'health', component: HealthCheckComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [MsalGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [MsalGuard] },
   { path: 'login-failed', component: LoginFailedComponent },

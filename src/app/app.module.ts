@@ -42,16 +42,36 @@ import { SidebarModule } from 'primeng/sidebar';
     SidebarModule,
     FontAwesomeModule,
     MsalModule.forRoot(
-      new PublicClientApplication(msalConfig),
-      {
-        interactionType: InteractionType.Redirect, // MSAL Guard Configuration
-        authRequest: {
-          scopes: ['user.read'],
+      new PublicClientApplication({
+        auth: {
+          clientId: 'bc89304e-167f-482e-8344-9faceecb5b95', // This is the ONLY mandatory field that you need to supply.
+          authority: b2cPolicies.authorities.signUpSignIn.authority, // Defaults to "https://login.microsoftonline.com/common"
+          knownAuthorities: [b2cPolicies.authorityDomain],
+          redirectUri: environment.urlHostProfile, // Points to window.location.origin. You must register this URI on Azure portal/App Registration.
+          postLogoutRedirectUri: environment.urlHost, // Indicates the page to navigate after logout.
+          // navigateToLoginRequestUrl: true, // If "true", will navigate back to the original request location before processing the auth code response.
         },
+        cache: {
+          cacheLocation: BrowserCacheLocation.SessionStorage, // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.
+          storeAuthStateInCookie: true, // Set this to "true" if you are having issues on IE11 or Edge
+        },
+        system: {
+          allowNativeBroker: false,
+          loggerOptions: {
+            loggerCallback(logLevel: LogLevel, message: string) {
+              console.log(message);
+            },
+            logLevel: LogLevel.Trace,
+            piiLoggingEnabled: false,
+          },
+        },
+      }),
+      {
+        interactionType: InteractionType.Popup, // MSAL Guard Configuration
         loginFailedRoute: '/login-failed',
       },
       {
-        interactionType: InteractionType.Redirect, // MSAL Interceptor Configuration
+        interactionType: InteractionType.Popup, // MSAL Interceptor Configuration
         protectedResourceMap: new Map([
           ['https://graph.microsoft.com/v1.0/me', ['user.read']],
         ]),
