@@ -64,6 +64,10 @@ export const protectedResources = {
       'https://VgApp.onmicrosoft.com/vgs-api/vgs.write',
     ],
   },
+  graphApi: {
+    endpoint: 'https://graph.microsoft.com/v1.0/me',
+    scopes: ['user.read'],
+  },
 };
 
 export const loginRequest = {

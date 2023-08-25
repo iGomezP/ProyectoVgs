@@ -27,9 +27,13 @@ import {
   faRightFromBracket,
   faUserPlus,
   faUserPen,
+  faGamepad,
 } from '@fortawesome/free-solid-svg-icons';
 import { b2cPolicies } from 'src/app/config/msalAuth.config';
 import { CookieService } from 'ngx-cookie-service';
+import { UserService } from 'src/app/services/msal/user.service';
+import { HttpClient } from '@angular/common/http';
+import { name } from '@azure/msal-angular/packageMetadata';
 
 type IdTokenClaimsWithPolicyId = IdTokenClaims & {
   acr?: string;
@@ -49,21 +53,24 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
     userRegister: faUserPlus,
     userEdit: faUserPen,
     cart: faCartShopping,
+    gamepad: faGamepad,
   };
   sidebarUser: boolean = false;
   isIframe = false;
   loginDisplay = false;
   private readonly _destroying$ = new Subject<void>();
+  userName: string = '';
 
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private authService: MsalService,
     private msalBroadcastService: MsalBroadcastService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private userAuthService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.isIframe = window !== window.parent && !window.opener;
+    //this.isIframe = window !== window.parent && !window.opener;
     this.setLoginDisplay();
 
     this.authService.instance.enableAccountStorageEvents(); // Optional - This will enable ACCOUNT_ADDED and ACCOUNT_REMOVED events emitted when a user logs in or out of another tab or window
@@ -108,9 +115,6 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
       .subscribe((result: EventMessage) => {
         let payload = result.payload as AuthenticationResult;
         let idtoken = payload.idTokenClaims as IdTokenClaimsWithPolicyId;
-
-        console.log('payload', payload);
-        console.log('idtoken', idtoken);
 
         if (
           idtoken.acr === b2cPolicies.names.signUpSignIn ||
@@ -196,13 +200,13 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
       });
   }
 
-  async setLoginDisplay() {
+  setLoginDisplay() {
     //await this.authService.instance.handleRedirectPromise();
     this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
   }
 
-  async checkAndSetActiveAccount() {
-    await this.authService.instance.handleRedirectPromise();
+  checkAndSetActiveAccount() {
+    //this.authService.instance.handleRedirectPromise();
     /**
      * If no active account set but there are accounts signed in, sets first account to active account
      * To use active account set here, subscribe to inProgress$ first in your component
@@ -210,7 +214,10 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
      */
     let activeAccount = this.authService.instance.getActiveAccount();
 
-    if (!activeAccount) {
+    if (
+      !activeAccount &&
+      this.authService.instance.getAllAccounts().length === 0
+    ) {
       localStorage.clear();
       sessionStorage.clear();
       this.cookieService.deleteAll();
@@ -225,10 +232,16 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
       // add your code for handling multiple accounts here
       this.authService.instance.setActiveAccount(accounts[0]);
     }
+
+    const nameClaims = this.authService.instance.getAllAccounts()[0];
+    if (nameClaims && nameClaims.name) {
+      this.userName = nameClaims.name;
+    }
+
+    console.log('Active account:', activeAccount);
   }
 
-  async loginRedirect() {
-    await this.authService.instance.loginRedirect();
+  loginRedirect() {
     if (this.msalGuardConfig.authRequest) {
       this.authService.loginRedirect({
         ...this.msalGuardConfig.authRequest,
@@ -238,45 +251,41 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
     }
   }
 
-  async login(userFlowRequest?: RedirectRequest | PopupRequest) {
-    // const request = { scopes: ['openid', 'profile'] };
-    // const token = await this.authService.instance.loginPopup();
-    // const res = await this.authService.instance.acquireTokenPopup(request);
-    // console.log(token);
-    // console.log(res);
-    // await this.authService.instance.loginRedirect();
-    if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
-      if (this.msalGuardConfig.authRequest) {
-        this.authService
-          .loginPopup({
-            ...this.msalGuardConfig.authRequest,
-            ...userFlowRequest,
-          } as PopupRequest)
-          .subscribe((response: AuthenticationResult) => {
-            this.authService.instance.setActiveAccount(response.account);
-          });
-      } else {
-        this.authService
-          .loginPopup(userFlowRequest)
-          .subscribe((response: AuthenticationResult) => {
-            this.authService.instance.setActiveAccount(response.account);
-          });
-      }
-    } else {
-      if (this.msalGuardConfig.authRequest) {
-        this.authService.loginRedirect({
-          ...this.msalGuardConfig.authRequest,
-          ...userFlowRequest,
-        } as RedirectRequest);
-      } else {
-        this.authService.loginRedirect(userFlowRequest);
-      }
-    }
+  login(userFlowRequest?: RedirectRequest | PopupRequest) {
+    this.userAuthService.loginUser(userFlowRequest);
+    // if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
+    //   if (this.msalGuardConfig.authRequest) {
+    //     this.authService
+    //       .loginPopup({
+    //         ...this.msalGuardConfig.authRequest,
+    //         ...userFlowRequest,
+    //       } as PopupRequest)
+    //       .subscribe((response: AuthenticationResult) => {
+    //         this.authService.instance.setActiveAccount(response.account);
+    //       });
+    //   } else {
+    //     this.authService
+    //       .loginPopup(userFlowRequest)
+    //       .subscribe((response: AuthenticationResult) => {
+    //         this.authService.instance.setActiveAccount(response.account);
+    //       });
+    //   }
+    // } else {
+    //   if (this.msalGuardConfig.authRequest) {
+    //     this.authService.loginRedirect({
+    //       ...this.msalGuardConfig.authRequest,
+    //       ...userFlowRequest,
+    //     } as RedirectRequest);
+    //   } else {
+    //     this.authService.loginRedirect(userFlowRequest);
+    //   }
+    // }
   }
 
-  async logout() {
-    await this.authService.instance.loginPopup();
-    await this.authService.instance.logoutRedirect();
+  logout() {
+    localStorage.clear();
+    sessionStorage.clear();
+    this.cookieService.deleteAll();
     if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
       this.authService.logoutPopup({
         mainWindowRedirectUri: '/',
@@ -286,12 +295,12 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
     }
   }
 
-  async editProfile() {
+  editProfile() {
     let editProfileFlowRequest: RedirectRequest | PopupRequest = {
       authority: b2cPolicies.authorities.editProfile.authority,
       scopes: [],
     };
-    await this.login(editProfileFlowRequest);
+    this.login(editProfileFlowRequest);
   }
 
   // unsubscribe to events when component is destroyed

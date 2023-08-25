@@ -59,7 +59,7 @@ import { SidebarModule } from 'primeng/sidebar';
           allowNativeBroker: false,
           loggerOptions: {
             loggerCallback(logLevel: LogLevel, message: string) {
-              console.log(message);
+              //console.log(message);
             },
             logLevel: LogLevel.Trace,
             piiLoggingEnabled: false,
@@ -67,13 +67,13 @@ import { SidebarModule } from 'primeng/sidebar';
         },
       }),
       {
-        interactionType: InteractionType.Popup, // MSAL Guard Configuration
+        interactionType: InteractionType.Redirect, // MSAL Guard Configuration
         loginFailedRoute: '/login-failed',
       },
       {
-        interactionType: InteractionType.Popup, // MSAL Interceptor Configuration
+        interactionType: InteractionType.Redirect, // MSAL Interceptor Configuration
         protectedResourceMap: new Map([
-          ['https://graph.microsoft.com/v1.0/me', ['user.read']],
+          ['https://graph.microsoft.com/v1.0/me', ['User.Read', 'profile']],
         ]),
       }
     ),

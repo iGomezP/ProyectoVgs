@@ -37,36 +37,39 @@
 
 
 	<!-- Escritorio -->
-	<!-- User Login | Register -->
-	<div class="flex flex-row !md:hidden" *ngIf="!loginDisplay">
-		<p-button (click)="login()" styleClass="p-button-rounded p-button-text p-button-lg" label="Log In">
-			<fa-icon class="mr-1" [icon]="faIcons.userLogin"></fa-icon>
-		</p-button>
-		<div class="vertical-separator">
-			<span></span>
-		</div>
-		<p-button styleClass="p-button-rounded p-button-text p-button-lg" label="Register">
-			<fa-icon class="mr-1" [icon]="faIcons.userRegister"></fa-icon>
-		</p-button>
-	</div>
-
-	<!-- User Edit | Logout -->
-	<div class="flex flex-row" *ngIf="loginDisplay">
-		<div>
-			<p-button styleClass="p-button-rounded p-button-text p-button-lg" badge="10">
-				<fa-icon [icon]="faIcons.cart"></fa-icon>
+	<div class="hidden md:block">
+		<!-- User Login | Register -->
+		<div class="flex flex-row" *ngIf="!loginDisplay">
+			<p-button (click)="login()" styleClass="p-button-rounded p-button-text p-button-lg" label="Log In">
+				<fa-icon class="mr-1" [icon]="faIcons.userLogin"></fa-icon>
+			</p-button>
+			<div class="vertical-separator">
+				<span></span>
+			</div>
+			<p-button styleClass="p-button-rounded p-button-text p-button-lg" label="Register">
+				<fa-icon class="mr-1" [icon]="faIcons.userRegister"></fa-icon>
 			</p-button>
 		</div>
-		<p-button (click)="editProfile()" styleClass="p-button-rounded p-button-text p-button-lg" label="Edit profile">
-			<fa-icon class="mr-1" [icon]="faIcons.userEdit"></fa-icon>
-		</p-button>
-		<div class="vertical-separator">
-			<span></span>
-		</div>
 
-		<p-button (click)="logout()" styleClass="p-button-rounded p-button-text p-button-lg" label="Log out">
-			<fa-icon class="mr-1" [icon]="faIcons.userLogout"></fa-icon>
-		</p-button>
+		<!-- User Edit | Logout -->
+		<div class="flex flex-row" *ngIf="loginDisplay">
+			<div>
+				<p-button styleClass="p-button-rounded p-button-text p-button-lg">
+					<fa-icon [icon]="faIcons.cart"></fa-icon>
+				</p-button>
+			</div>
+			<p-button (click)="editProfile()" styleClass="p-button-rounded p-button-text p-button-lg"
+				label="Welcome! {{userName}}">
+				<fa-icon class="mr-1" [icon]="faIcons.gamepad"></fa-icon>
+			</p-button>
+			<div class="vertical-separator">
+				<span></span>
+			</div>
+
+			<p-button (click)="logout()" styleClass="p-button-rounded p-button-text p-button-lg" label="Log out">
+				<fa-icon class="mr-1" [icon]="faIcons.userLogout"></fa-icon>
+			</p-button>
+		</div>
 	</div>
 
 </div>
