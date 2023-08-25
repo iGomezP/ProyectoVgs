@@ -1,2 +1,25 @@
-<p>profile works!</p>
-<p-button label="Get User"></p-button>
+<main>
+	<div class="card">
+		<p-tabView>
+			<p-tabPanel>
+				<ng-template pTemplate="header">
+					<fa-icon [icon]="faIcons.faIdBadge" class="mr-1"></fa-icon>
+					<span>Basic Info</span>
+				</ng-template>
+				<div class="card">
+					<label>Alias</label>
+					<input type="text" pInputText [disabled]="true" value="{{userProfile.alias}}">
+					<br>
+					<label>Email</label>
+					<input type="text" pInputText [disabled]="true" value="{{userProfile.email}}">
+				</div>
+			</p-tabPanel>
+			<p-tabPanel header="Header II">
+				<ng-template pTemplate="header">
+					<fa-icon [icon]="faIcons.faAddressBook" class="mr-1"></fa-icon>
+					<span>Address Details</span>
+				</ng-template>
+			</p-tabPanel>
+		</p-tabView>
+	</div>
+</main>

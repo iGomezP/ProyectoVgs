@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MsalService } from '@azure/msal-angular';
+import { faIdBadge, faAddressBook } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'src/app/models/user.model';
 
 @Component({
@@ -8,7 +9,14 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  userProfile!: User;
+  faIcons = {
+    faIdBadge: faIdBadge,
+    faAddressBook: faAddressBook,
+  };
+  userProfile: User = {
+    alias: '',
+    email: '',
+  };
 
   constructor(private authService: MsalService) {}
 
@@ -17,9 +25,15 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserData() {
-    const user = this.authService.instance.getActiveAccount();
-    if (user) {
-      console.log(user);
+    const activeAccount = this.authService.instance.getActiveAccount();
+    const userName = activeAccount?.name;
+    const userClaims = activeAccount?.idTokenClaims;
+    console.log(userName);
+    console.log(userClaims?.emails?.[0] ?? 'default value');
+
+    if (activeAccount && userName && userClaims) {
+      this.userProfile.alias = userName;
+      this.userProfile.email = userClaims?.emails?.[0] ?? '';
     } else {
       console.log('No user');
     }

@@ -14,6 +14,8 @@ import { ToastModule } from 'primeng/toast';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
 import { ProfileComponent } from './users/profile/profile.component';
+import { TabViewModule } from 'primeng/tabview';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ProfileComponent } from './users/profile/profile.component';
     PasswordModule,
     DividerModule,
     FormsModule,
+    TabViewModule,
+    FontAwesomeModule,
   ],
 })
 export class MainModule {}
