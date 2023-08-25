@@ -12,7 +12,6 @@ import {
   RedirectRequest,
   EventMessage,
   EventType,
-  InteractionType,
   AccountInfo,
   SsoSilentRequest,
   IdTokenClaims,
@@ -32,8 +31,6 @@ import {
 import { b2cPolicies } from 'src/app/config/msalAuth.config';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/services/msal/user.service';
-import { HttpClient } from '@angular/common/http';
-import { name } from '@azure/msal-angular/packageMetadata';
 
 type IdTokenClaimsWithPolicyId = IdTokenClaims & {
   acr?: string;
@@ -70,7 +67,6 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    //this.isIframe = window !== window.parent && !window.opener;
     this.setLoginDisplay();
 
     this.authService.instance.enableAccountStorageEvents(); // Optional - This will enable ACCOUNT_ADDED and ACCOUNT_REMOVED events emitted when a user logs in or out of another tab or window
@@ -201,12 +197,10 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
   }
 
   setLoginDisplay() {
-    //await this.authService.instance.handleRedirectPromise();
     this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
   }
 
   checkAndSetActiveAccount() {
-    //this.authService.instance.handleRedirectPromise();
     /**
      * If no active account set but there are accounts signed in, sets first account to active account
      * To use active account set here, subscribe to inProgress$ first in your component
@@ -253,54 +247,14 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
 
   login(userFlowRequest?: RedirectRequest | PopupRequest) {
     this.userAuthService.loginUser(userFlowRequest);
-    // if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
-    //   if (this.msalGuardConfig.authRequest) {
-    //     this.authService
-    //       .loginPopup({
-    //         ...this.msalGuardConfig.authRequest,
-    //         ...userFlowRequest,
-    //       } as PopupRequest)
-    //       .subscribe((response: AuthenticationResult) => {
-    //         this.authService.instance.setActiveAccount(response.account);
-    //       });
-    //   } else {
-    //     this.authService
-    //       .loginPopup(userFlowRequest)
-    //       .subscribe((response: AuthenticationResult) => {
-    //         this.authService.instance.setActiveAccount(response.account);
-    //       });
-    //   }
-    // } else {
-    //   if (this.msalGuardConfig.authRequest) {
-    //     this.authService.loginRedirect({
-    //       ...this.msalGuardConfig.authRequest,
-    //       ...userFlowRequest,
-    //     } as RedirectRequest);
-    //   } else {
-    //     this.authService.loginRedirect(userFlowRequest);
-    //   }
-    // }
   }
 
   logout() {
-    localStorage.clear();
-    sessionStorage.clear();
-    this.cookieService.deleteAll();
-    if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
-      this.authService.logoutPopup({
-        mainWindowRedirectUri: '/',
-      });
-    } else {
-      this.authService.logoutRedirect();
-    }
+    this.userAuthService.logoutUser();
   }
 
   editProfile() {
-    let editProfileFlowRequest: RedirectRequest | PopupRequest = {
-      authority: b2cPolicies.authorities.editProfile.authority,
-      scopes: [],
-    };
-    this.login(editProfileFlowRequest);
+    this.userAuthService.editUserProfile();
   }
 
   // unsubscribe to events when component is destroyed

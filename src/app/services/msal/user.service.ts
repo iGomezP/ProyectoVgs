@@ -1,4 +1,3 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import {
   MSAL_GUARD_CONFIG,
@@ -11,8 +10,8 @@ import {
   PopupRequest,
   RedirectRequest,
 } from '@azure/msal-browser';
-import { Observable } from 'rxjs';
-import { msalConfig, protectedResources } from 'src/app/config/msalAuth.config';
+import { CookieService } from 'ngx-cookie-service';
+import { b2cPolicies } from 'src/app/config/msalAuth.config';
 
 @Injectable({
   providedIn: 'root',
@@ -20,8 +19,8 @@ import { msalConfig, protectedResources } from 'src/app/config/msalAuth.config';
 export class UserService {
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
-    private httpClient: HttpClient,
-    private authService: MsalService
+    private authService: MsalService,
+    private cookieService: CookieService
   ) {}
 
   loginUser(userFlowRequest?: RedirectRequest | PopupRequest) {
@@ -51,6 +50,27 @@ export class UserService {
       } else {
         this.authService.loginRedirect(userFlowRequest);
       }
+    }
+  }
+
+  editUserProfile() {
+    let editProfileFlowRequest: RedirectRequest | PopupRequest = {
+      authority: b2cPolicies.authorities.editProfile.authority,
+      scopes: [],
+    };
+    this.loginUser(editProfileFlowRequest);
+  }
+
+  logoutUser() {
+    localStorage.clear();
+    sessionStorage.clear();
+    this.cookieService.deleteAll();
+    if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
+      this.authService.logoutPopup({
+        mainWindowRedirectUri: '/',
+      });
+    } else {
+      this.authService.logoutRedirect();
     }
   }
 }
