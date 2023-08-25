@@ -27,7 +27,9 @@ import {
   faUserPlus,
   faUserPen,
   faGamepad,
+  faUser as faSolidUser,
 } from '@fortawesome/free-solid-svg-icons';
+import { faUser as faRegularUser } from '@fortawesome/free-regular-svg-icons';
 import { b2cPolicies } from 'src/app/config/msalAuth.config';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/services/msal/user.service';
@@ -51,6 +53,8 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
     userEdit: faUserPen,
     cart: faCartShopping,
     gamepad: faGamepad,
+    userOff: faRegularUser,
+    userOn: faSolidUser,
   };
   sidebarUser: boolean = false;
   isIframe = false;

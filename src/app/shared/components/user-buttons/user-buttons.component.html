@@ -23,16 +23,20 @@
 
 			<!-- User Edit | Logout -->
 			<div class="mt-4 flex flex-col gap-3" *ngIf="loginDisplay">
-				<p-button class="buttons-form" styleClass="w-full" label="Edit profile" (onClick)="editProfile()"
+				<p-button class="buttons-form" styleClass="w-full" label="Profile" routerLink="/profile"
 					(click)="sidebarUser = false">
 					<fa-icon class="mr-1" [icon]="faIcons.userEdit"></fa-icon></p-button>
-				<p-button class="buttons-form" styleClass="w-full" label="Log out" (click)="sidebarUser = false">
+				<p-button (onClick)="logout()" class="buttons-form" styleClass="w-full" label="Log out"
+					(click)="sidebarUser = false">
 					<fa-icon class="mr-1" [icon]="faIcons.userLogout"></fa-icon></p-button>
 			</div>
 		</p-sidebar>
 		<p-button *ngIf="loginDisplay" styleClass="p-button-rounded p-button-text" class="mr-px"
 			icon="pi pi-shopping-cart"></p-button>
-		<p-button styleClass="p-button-rounded p-button-text" (click)="sidebarUser = true" icon="pi pi-user"></p-button>
+		<p-button styleClass="p-button-rounded p-button-text" (click)="sidebarUser = true">
+			<fa-icon *ngIf="!loginDisplay" [icon]="faIcons.userOff" class="text-2xl"></fa-icon>
+			<fa-icon *ngIf="loginDisplay" [icon]="faIcons.userOn" class="text-2xl"></fa-icon>
+		</p-button>
 	</div>
 
 
@@ -58,7 +62,7 @@
 					<fa-icon [icon]="faIcons.cart"></fa-icon>
 				</p-button>
 			</div>
-			<p-button (click)="editProfile()" styleClass="p-button-rounded p-button-text p-button-lg"
+			<p-button routerLink="/profile" styleClass="p-button-rounded p-button-text p-button-lg"
 				label="Welcome! {{userName}}">
 				<fa-icon class="mr-1" [icon]="faIcons.gamepad"></fa-icon>
 			</p-button>
