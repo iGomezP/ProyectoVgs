@@ -31,12 +31,14 @@
 					<fa-icon class="mr-1" [icon]="faIcons.userLogout"></fa-icon></p-button>
 			</div>
 		</p-sidebar>
-		<p-button *ngIf="loginDisplay" styleClass="p-button-rounded p-button-text" class="mr-px"
-			icon="pi pi-shopping-cart"></p-button>
-		<p-button styleClass="p-button-rounded p-button-text" (click)="sidebarUser = true">
-			<fa-icon *ngIf="!loginDisplay" [icon]="faIcons.userOff" class="text-2xl"></fa-icon>
-			<fa-icon *ngIf="loginDisplay" [icon]="faIcons.userOn" class="text-2xl"></fa-icon>
-		</p-button>
+		<div class="flex items-center justify-center">
+			<p-button *ngIf="loginDisplay" styleClass="p-button-rounded p-button-text" class="mr-px"
+				icon="pi pi-shopping-cart"></p-button>
+			<p-button styleClass="p-button-rounded p-button-text" (click)="sidebarUser = true">
+				<fa-icon *ngIf="!loginDisplay" [icon]="faIcons.userOff" class="text-2xl"></fa-icon>
+				<fa-icon *ngIf="loginDisplay" [icon]="faIcons.userOn" class="text-2xl"></fa-icon>
+			</p-button>
+		</div>
 	</div>
 
 
