@@ -48,7 +48,7 @@ import { SidebarModule } from 'primeng/sidebar';
           authority: b2cPolicies.authorities.signUpSignIn.authority, // Defaults to "https://login.microsoftonline.com/common"
           knownAuthorities: [b2cPolicies.authorityDomain],
           redirectUri: environment.urlHostProfile, // Points to window.location.origin. You must register this URI on Azure portal/App Registration.
-          //postLogoutRedirectUri: environment.urlHost, // Indicates the page to navigate after logout.
+          postLogoutRedirectUri: environment.urlHost, // Indicates the page to navigate after logout.
           // navigateToLoginRequestUrl: true, // If "true", will navigate back to the original request location before processing the auth code response.
         },
         cache: {
@@ -56,7 +56,7 @@ import { SidebarModule } from 'primeng/sidebar';
           storeAuthStateInCookie: true, // Set this to "true" if you are having issues on IE11 or Edge
         },
         system: {
-          allowNativeBroker: false,
+          allowNativeBroker: true,
           loggerOptions: {
             loggerCallback(logLevel: LogLevel, message: string) {
               //console.log(message);

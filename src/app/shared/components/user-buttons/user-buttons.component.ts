@@ -33,6 +33,7 @@ import { faUser as faRegularUser } from '@fortawesome/free-regular-svg-icons';
 import { b2cPolicies } from 'src/app/config/msalAuth.config';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/services/msal/user.service';
+import { environment } from 'src/environments/environment';
 
 type IdTokenClaimsWithPolicyId = IdTokenClaims & {
   acr?: string;
@@ -84,7 +85,7 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
       )
       .subscribe((result: EventMessage) => {
         if (this.authService.instance.getAllAccounts().length === 0) {
-          window.location.pathname = '/';
+          window.location.pathname = environment.urlHost;
         } else {
           this.setLoginDisplay();
         }
