@@ -18,5 +18,16 @@
   display: block;
   width: 2px; /* Adjust the width as needed */
   height: 20px; /* Adjust the height to make it bigger */
-  background-color: #ccc; /* Adjust the color as needed */
+  background-color: #000; /* Adjust the color as needed */
+}
+
+:host ::ng-deep {
+  .p-sidebar-header {
+    flex-direction: row-reverse;
+  }
+
+  .header-right .p-sidebar-header .p-sidebar-icon {
+    left: -50px !important;
+    margin-left: 0 !important;
+  }
 }

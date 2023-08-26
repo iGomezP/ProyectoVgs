@@ -1,27 +1,31 @@
 <header *ngIf="!generalAuxService.hideBars" class="p-2">
 	<!-- Mobile -->
-	<div class="md:hidden flex items-center justify-between border-b-2 border-gray-400 h-3rem">
-		<div>
-			<p-button styleClass="p-button-rounded p-button-text" (click)="sidebarStore = true"
-				icon="pi pi-bars button-bars"></p-button>
-			<p-sidebar #StoreSidebar [(visible)]="sidebarStore" styleClass="max-w-max">
-				<ng-template pTemplate="header">
+	<div class="md:hidden flex items-center justify-evenly h-3rem cristal-bar">
+		<p-button styleClass="p-button-rounded p-button-text" (click)="sidebarStore = true" icon="pi pi-bars button-bars"
+			ngClass="ml-auto"></p-button>
+		<p-sidebar #StoreSidebar [(visible)]="sidebarStore" styleClass="max-w-[70%] header-left" [modal]="true">
+			<ng-template pTemplate="header">
+				<div>
 					<a routerLink="/" (click)="sidebarStore = false">
-						<img class="max-w-[8rem]" src="assets/logos/logoMovil.svg" alt="Logo">
+						<img class="max-w-[4rem]" src="assets/logos/logoOnlyMovil.svg" alt="Logo">
 					</a>
-				</ng-template>
-				<ng-template pTemplate="content">
-					<p-slideMenu [model]="mainMenuItems" [viewportHeight]="600">
-					</p-slideMenu>
-				</ng-template>
-				<ng-template pTemplate="closeicon">
-					<fa-icon [icon]="iconClose"></fa-icon>
-				</ng-template>
-			</p-sidebar>
-		</div>
+				</div>
+			</ng-template>
+			<ng-template pTemplate="content">
+				<p-slideMenu [model]="mainMenuItems" [viewportHeight]="600" class="flex justify-center">
+					<ng-template pTemplate="backicon" class="flex items-center">
+						<fa-icon class="mr-1" [icon]="backIcon" style="color: #000;"></fa-icon>
+					</ng-template>
+				</p-slideMenu>
+			</ng-template>
+			<ng-template pTemplate="closeicon">
+				<fa-icon [icon]="iconClose" style="color: #000;" ngClass="text-3xl"></fa-icon>
+			</ng-template>
+		</p-sidebar>
+
 		<div>
 			<a routerLink="/">
-				<img class="max-w-[12rem]" src="assets/logos/logoFull.svg" alt="Logo">
+				<img class="max-w-[12rem]" src="assets/logos/newLogo.svg" alt="Logo">
 			</a>
 		</div>
 		<app-user-buttons></app-user-buttons>
@@ -37,7 +41,7 @@
 				</div>
 			</ng-template>
 			<ng-template pTemplate="menuicon">
-				<i class="fa-solid fa-gamepad"></i>
+
 			</ng-template>
 			<ng-template pTemplate="end">
 				<app-user-buttons></app-user-buttons>

@@ -16,6 +16,7 @@ import { DividerModule } from 'primeng/divider';
 import { ProfileComponent } from './users/profile/profile.component';
 import { TabViewModule } from 'primeng/tabview';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UserInfoComponent } from './users/profile/user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    UserInfoComponent,
   ],
   imports: [
     CommonModule,

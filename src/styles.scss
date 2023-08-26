@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~primeicons/primeicons.css";
-@import "~primeng/resources/themes/saga-orange/theme.css";
-@tailwind base;
+@import "~primeng/resources/themes/bootstrap4-light-purple/theme.css";
+//@import "reset.css";
 @tailwind components;
 @tailwind utilities;
 
@@ -10,7 +10,33 @@ body {
   padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   box-sizing: inherit;
-  background-color: #eeeeee;
+  color: #fff;
+  background: linear-gradient(-30deg, #e5a4ff, #fdc1ff, #a2e6ff, #b8ecff);
+  background: linear-gradient(
+    45deg,
+    //#b333bb,
+    //#de004e,
+    #5a001b,
+    #321450,
+    #29132e
+  );
+  background-size: 400% 400%;
+  animation: gradient 11s ease infinite;
+  height: 100vh;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 html *,
@@ -19,6 +45,36 @@ html ::before {
   box-sizing: inherit;
 }
 
-.buttons-form {
-  background-color: #ffc107 !important;
+// .buttons-form {
+//   background-color: #883cae !important;
+//   border-radius: 1rem;
+// }
+
+.back-cristal {
+  /* From https://css.glass */
+  background: rgba(114, 114, 114, 0.2) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+.cristal-body {
+  /* From https://css.glass */
+  background: rgba(0, 0, 0, 0.4) !important;
+  height: 100%;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+}
+
+fa-icon {
+  color: #fff;
+}
+
+.label-user {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  margin-bottom: 0.25rem;
 }

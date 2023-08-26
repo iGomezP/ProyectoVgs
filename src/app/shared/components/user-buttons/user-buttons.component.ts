@@ -21,7 +21,7 @@ import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import {
   faCartShopping,
-  faCircleXmark,
+  faXmark,
   faRightToBracket,
   faRightFromBracket,
   faUserPlus,
@@ -47,7 +47,7 @@ type IdTokenClaimsWithPolicyId = IdTokenClaims & {
 })
 export class UserButtonsComponent implements OnInit, OnDestroy {
   faIcons = {
-    close: faCircleXmark,
+    close: faXmark,
     userLogin: faRightToBracket,
     userLogout: faRightFromBracket,
     userRegister: faUserPlus,
@@ -212,22 +212,16 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
      * Note: Basic usage demonstrated. Your app may require more complicated account selection logic
      */
     let activeAccount = this.authService.instance.getActiveAccount();
+    let allAccounts = this.authService.instance.getAllAccounts();
 
-    if (
-      !activeAccount &&
-      this.authService.instance.getAllAccounts().length === 0
-    ) {
+    if (!activeAccount && allAccounts.length === 0) {
       localStorage.clear();
       sessionStorage.clear();
       this.cookieService.deleteAll();
     }
 
-    if (
-      !activeAccount &&
-      this.authService.instance.getAllAccounts().length > 0
-    ) {
-      let accounts = this.authService.instance.getAllAccounts();
-
+    if (!activeAccount && allAccounts.length > 0) {
+      let accounts = allAccounts;
       // add your code for handling multiple accounts here
       this.authService.instance.setActiveAccount(accounts[0]);
     }
@@ -237,7 +231,29 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
       this.userName = nameClaims.name;
     }
 
-    console.log('Active account:', activeAccount);
+    // Assigns active account when edit profile is returned
+    if (allAccounts.length > 1) {
+      let accounts = allAccounts;
+      accounts.map((account) => {
+        const idToken = account.idTokenClaims;
+        if (idToken) {
+          const tfp = (idToken['tfp'] as string).toLowerCase();
+
+          if (tfp === b2cPolicies.names.editProfile) {
+            // const username = allAccounts[0].username;
+            // console.log(username);
+            // account.username = username;
+            // console.log(account);
+            this.authService.instance.setActiveAccount(account);
+          }
+        }
+      });
+      //console.log('Accounts', accounts);
+      //this.authService.instance.setActiveAccount()
+    }
+
+    // console.log('All Accounts', allAccounts);
+    // console.log('Active account:', activeAccount);
   }
 
   loginRedirect() {

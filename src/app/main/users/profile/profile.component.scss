@@ -1,0 +1,26 @@
+:host ::ng-deep {
+  .p-fieldset,
+  .p-tabview-nav-link,
+  .p-tabview-panels {
+    /* From https://css.glass */
+    background: #f887ff20 !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: none !important;
+    color: #fff !important;
+  }
+
+  .p-tabview-nav {
+    border: none;
+    //flex-direction: column;
+  }
+
+  .p-tabview-panels {
+    background-color: #fff;
+  }
+
+  .p-tabview-nav li.ng-star-inserted.p-highlight {
+    border-bottom: 1px solid #f200ff;
+  }
+}

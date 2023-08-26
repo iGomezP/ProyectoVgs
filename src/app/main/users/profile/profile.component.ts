@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MsalService } from '@azure/msal-angular';
+import { AccountInfo } from '@azure/msal-browser';
 import { faIdBadge, faAddressBook } from '@fortawesome/free-solid-svg-icons';
-import { User } from 'src/app/models/user.model';
+import { IPeople } from 'src/app/models/people.model';
+import { IUser } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +15,17 @@ export class ProfileComponent implements OnInit {
     faIdBadge: faIdBadge,
     faAddressBook: faAddressBook,
   };
-  userProfile: User = {
+  private activeAccount!: any;
+  peopleInfo: IPeople = {
+    firstName: '',
+    lastName: '',
+    city: '',
+    countryId: '',
+    postalCode: '',
+    state: '',
+    streetAddress: '',
+  };
+  userProfile: IUser = {
     alias: '',
     email: '',
   };
@@ -21,21 +33,42 @@ export class ProfileComponent implements OnInit {
   constructor(private authService: MsalService) {}
 
   ngOnInit(): void {
-    this.getUserData();
-  }
-
-  getUserData() {
-    const activeAccount = this.authService.instance.getActiveAccount();
-    const userName = activeAccount?.name;
-    const userClaims = activeAccount?.idTokenClaims;
-    console.log(userName);
-    console.log(userClaims?.emails?.[0] ?? 'default value');
-
-    if (activeAccount && userName && userClaims) {
-      this.userProfile.alias = userName;
-      this.userProfile.email = userClaims?.emails?.[0] ?? '';
+    this.activeAccount = this.getActiveAccount();
+    if (this.activeAccount) {
+      this.getBasicInfo(this.activeAccount);
+      this.getAddressInfo(this.activeAccount);
     } else {
       console.log('No user');
     }
+  }
+
+  getActiveAccount(): AccountInfo | undefined {
+    const activeAccount = this.authService.instance.getActiveAccount();
+    if (activeAccount) return activeAccount;
+    return undefined;
+  }
+
+  getBasicInfo(activeAccount: AccountInfo) {
+    const userAlias = activeAccount?.name;
+    const userEmail = activeAccount?.idTokenClaims?.emails![0];
+    this.userProfile.alias = userAlias;
+    this.userProfile.email = userEmail;
+    console.log('UserInfo', this.userProfile);
+  }
+
+  getAddressInfo(activeAccount: AccountInfo) {
+    const userClaims = activeAccount?.idTokenClaims;
+    if (userClaims) {
+      this.peopleInfo = {
+        firstName: userClaims['given_name'] as string,
+        lastName: userClaims['family_name'] as string,
+        city: userClaims['city'] as string,
+        countryId: userClaims['country'] as string,
+        postalCode: userClaims['postalCode'] as string,
+        state: userClaims['state'] as string,
+        streetAddress: userClaims['streetAddress'] as string,
+      };
+    }
+    console.log('PeopleInfo', this.peopleInfo);
   }
 }

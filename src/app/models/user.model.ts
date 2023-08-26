@@ -1,4 +1,4 @@
-export interface User {
-  email: string;
-  alias: string;
+export interface IUser {
+  email: string | undefined;
+  alias: string | undefined;
 }

@@ -1,21 +1,25 @@
-<h1 id="tableLabel">Weather forecast</h1>
-<p>This component demonstrates fetching data from the server.</p>
-<p *ngIf="!weatherForecast"><em>Loading... Please refresh once the ASP.NET backend has started.</em></p>
-<table *ngIf="weatherForecast">
-	<thead>
-		<tr>
-			<th>Date</th>
-			<th>Temp. (C)</th>
-			<th>Temp. (F)</th>
-			<th>Summary</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let forecast of weatherForecast">
-			<td>{{ forecast.date }}</td>
-			<td>{{ forecast.temperatureC }}</td>
-			<td>{{ forecast.temperatureF }}</td>
-			<td>{{ forecast.summary }}</td>
-		</tr>
-	</tbody>
-</table>
+<div class="card">
+	<div class="text-center max-w-[90%]" style="margin: 0 auto;">
+		<h1 id="tableLabel">Weather forecast</h1>
+		<p>This component demonstrates fetching data from the server.</p>
+		<p *ngIf="!weatherForecast"><em>Loading... Please refresh once the ASP.NET backend has started.</em></p>
+		<table *ngIf="weatherForecast">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Temp. (C)</th>
+					<th>Temp. (F)</th>
+					<th>Summary</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let forecast of weatherForecast">
+					<td>{{ forecast.date | date:"medium" }}</td>
+					<td>{{ forecast.temperatureC }}</td>
+					<td>{{ forecast.temperatureF }}</td>
+					<td>{{ forecast.summary }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

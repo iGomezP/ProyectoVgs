@@ -2,41 +2,41 @@
 
 	<!-- Mobile -->
 	<div class="md:hidden">
-		<p-sidebar #UserSidebar [(visible)]="sidebarUser" styleClass="w-7" position="right">
+		<p-sidebar #UserSidebar [(visible)]="sidebarUser" styleClass="max-w-[70%] header-right" position="right">
 			<ng-template pTemplate="header">
 				<a routerLink="/" (click)="sidebarUser = false">
-					<img class="max-w-[8rem]" src="assets/logos/logoMovil.svg" alt="Logo">
+					<img class="max-w-[4rem]" src="assets/logos/logoOnlyMovil.svg" alt="Logo">
 				</a>
 			</ng-template>
 			<ng-template pTemplate="closeicon">
-				<fa-icon [icon]="faIcons.close"></fa-icon>
+				<fa-icon [icon]="faIcons.close" style="color: #000;" ngClass="text-3xl"></fa-icon>
 			</ng-template>
 			<!-- User Login | Register -->
 			<div class="mt-4 flex flex-col gap-3" *ngIf="!loginDisplay">
-				<p-button class="buttons-form" styleClass="w-full" label="Log In" (click)="sidebarUser = false"
-					(onClick)="login()">
+				<p-button styleClass="w-full  p-button-raised" label="Log In" (click)="sidebarUser = false" (onClick)="login()">
 					<fa-icon class="mr-1" [icon]="faIcons.userLogin"></fa-icon></p-button>
-				<p-button class="buttons-form" styleClass="w-full" label="Register" (click)="sidebarUser = false"
-					(onClick)="login()">
+				<p-button class="buttons-form" styleClass="w-full  p-button-raised" label="Register"
+					(click)="sidebarUser = false" (onClick)="login()">
 					<fa-icon class="mr-1" [icon]="faIcons.userRegister"></fa-icon></p-button>
 			</div>
 
 			<!-- User Edit | Logout -->
 			<div class="mt-4 flex flex-col gap-3" *ngIf="loginDisplay">
-				<p-button class="buttons-form" styleClass="w-full" label="Profile" routerLink="/profile"
-					(click)="sidebarUser = false">
-					<fa-icon class="mr-1" [icon]="faIcons.userEdit"></fa-icon></p-button>
-				<p-button (onClick)="logout()" class="buttons-form" styleClass="w-full" label="Log out"
-					(click)="sidebarUser = false">
+				<p-button class="buttons-form" styleClass="w-full p-button-raised p-button-rounded" label="Profile"
+					routerLink="/profile" (click)="sidebarUser = false">
+					<fa-icon [icon]="faIcons.userEdit"></fa-icon></p-button>
+				<p-button (onClick)="logout()" class="buttons-form" styleClass="w-full p-button-raised p-button-rounded"
+					label="Log out" (click)="sidebarUser = false">
 					<fa-icon class="mr-1" [icon]="faIcons.userLogout"></fa-icon></p-button>
 			</div>
 		</p-sidebar>
 		<div class="flex items-center justify-center">
-			<p-button *ngIf="loginDisplay" styleClass="p-button-rounded p-button-text" class="mr-px"
-				icon="pi pi-shopping-cart"></p-button>
+			<p-button *ngIf="loginDisplay" styleClass="p-button-rounded p-button-text" class="mr-px">
+				<fa-icon ngClass="text-2xl" [icon]="faIcons.cart" style="color: #fff;"></fa-icon>
+			</p-button>
 			<p-button styleClass="p-button-rounded p-button-text" (click)="sidebarUser = true">
-				<fa-icon *ngIf="!loginDisplay" [icon]="faIcons.userOff" class="text-2xl"></fa-icon>
-				<fa-icon *ngIf="loginDisplay" [icon]="faIcons.userOn" class="text-2xl"></fa-icon>
+				<fa-icon *ngIf="!loginDisplay" [icon]="faIcons.userOff" class="text-2xl" style="color: #fff;"></fa-icon>
+				<fa-icon *ngIf="loginDisplay" [icon]="faIcons.userOn" class="text-2xl" style="color: #fff;"></fa-icon>
 			</p-button>
 		</div>
 	</div>
@@ -66,7 +66,7 @@
 			</div>
 			<p-button routerLink="/profile" styleClass="p-button-rounded p-button-text p-button-lg"
 				label="Welcome! {{userName}}">
-				<fa-icon class="mr-1" [icon]="faIcons.gamepad"></fa-icon>
+				<fa-icon ngClass="gamepad-icon" class="mr-1" [icon]="faIcons.gamepad"></fa-icon>
 			</p-button>
 			<div class="vertical-separator">
 				<span></span>

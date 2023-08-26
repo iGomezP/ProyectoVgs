@@ -1,25 +1,45 @@
 <main>
-	<div class="card">
+	<!-- Mobile -->
+	<div class="card w-11/12 md:hidden" style="margin: 0 auto;">
 		<p-tabView>
 			<p-tabPanel>
 				<ng-template pTemplate="header">
 					<fa-icon [icon]="faIcons.faIdBadge" class="mr-1"></fa-icon>
 					<span>Basic Info</span>
 				</ng-template>
-				<div class="card">
-					<label>Alias</label>
-					<input type="text" pInputText [disabled]="true" value="{{userProfile.alias}}">
-					<br>
-					<label>Email</label>
-					<input type="text" pInputText [disabled]="true" value="{{userProfile.email}}">
-				</div>
+				<app-user-info [userInfo]="userProfile" [isBasicInfo]="true"></app-user-info>
 			</p-tabPanel>
 			<p-tabPanel header="Header II">
 				<ng-template pTemplate="header">
 					<fa-icon [icon]="faIcons.faAddressBook" class="mr-1"></fa-icon>
 					<span>Address Details</span>
 				</ng-template>
+				<app-user-info [peopleInfo]="peopleInfo" [isAddressInfo]="true"></app-user-info>
 			</p-tabPanel>
 		</p-tabView>
+	</div>
+	<!-- Desktop -->
+	<div class="hidden md:block w-11/12" style="margin: 0 auto;">
+		<div class="grid grid-cols-2 gap-6">
+			<p-fieldset>
+				<ng-template pTemplate="header">
+					<div>
+						<fa-icon [icon]="faIcons.faIdBadge" class="mr-1"></fa-icon>
+						<span>User Details</span>
+					</div>
+				</ng-template>
+				<app-user-info [userInfo]="userProfile" [isBasicInfo]="true"></app-user-info>
+			</p-fieldset>
+
+			<p-fieldset>
+				<ng-template pTemplate="header">
+					<div>
+						<fa-icon [icon]="faIcons.faAddressBook" class="mr-1"></fa-icon>
+						<span>User Address</span>
+					</div>
+				</ng-template>
+				<app-user-info [peopleInfo]="peopleInfo" [isAddressInfo]="true"></app-user-info>
+			</p-fieldset>
+		</div>
 	</div>
 </main>

@@ -1,0 +1,116 @@
+<div class="mb-2">
+	<p-button styleClass="w-full" label="Update profile" (onClick)="editProfile()"></p-button>
+	<p class="text-sm text-center underline decoration-pink-500 decoration-2">For security reasons, the profile update is
+		given in
+		another window.</p>
+</div>
+
+<!-- Basic info -->
+<div *ngIf="isBasicInfo">
+	<div class="card flex flex-col gap-3">
+		<div class="grid-parent">
+			<div class="text-2xl grid-child1">
+				<fa-icon [icon]="faIcons.dragon" class="mr-3"></fa-icon>
+			</div>
+			<div class="grid-child2 icon-grid flex justify-center">
+				<label class="label-user">Alias</label>
+			</div>
+			<div class="grid-child3 icon-grid">
+				<input class="w-full" type="text" pInputText [disabled]="true" value="{{userInfo.alias}}">
+			</div>
+		</div>
+		<div class="grid-parent">
+			<div class="text-2xl icon-grid grid-child1">
+				<fa-icon [icon]="faIcons.scroll" class="mr-2"></fa-icon>
+			</div>
+			<div class="icon-grid grid-child2  flex justify-center">
+				<label class="label-user">Email</label>
+			</div>
+			<div class="icon-grid grid-child3">
+				<input class="w-full" type="text" pInputText [disabled]="true" value="{{userInfo.email}}">
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Address info -->
+<div *ngIf="isAddressInfo">
+	<div class="card flex flex-col gap-3">
+		<div class="grid-parent">
+			<div class="text-2xl grid-child1">
+				<fa-icon [icon]="faIcons.diceOption" class="mr-3"></fa-icon>
+			</div>
+			<div class="grid-child2 icon-grid flex justify-center">
+				<label class="label-user">Name</label>
+			</div>
+			<div class="grid-child3 icon-grid">
+				<input class="w-full" type="text" pInputText [disabled]="true" value="{{peopleInfo.firstName}}">
+			</div>
+		</div>
+		<div class="grid-parent">
+			<div class="text-2xl grid-child1">
+				<fa-icon [icon]="faIcons.diceOption" class="mr-3"></fa-icon>
+			</div>
+			<div class="grid-child2 icon-grid flex justify-center">
+				<label class="label-user">Last Name</label>
+			</div>
+			<div class="grid-child3 icon-grid">
+				<input class="w-full" type="text" pInputText [disabled]="true" value="{{peopleInfo.lastName}}">
+			</div>
+		</div>
+		<div class="grid-parent">
+			<div class="text-2xl grid-child1">
+				<fa-icon [icon]="faIcons.diceOption" class="mr-3"></fa-icon>
+			</div>
+			<div class="grid-child2 icon-grid flex justify-center">
+				<label class="label-user">Street</label>
+			</div>
+			<div class="grid-child3 icon-grid">
+				<input class="w-full" type="text" pInputText [disabled]="true" value="{{peopleInfo.streetAddress}}">
+			</div>
+		</div>
+		<div class="grid-parent">
+			<div class="text-2xl grid-child1">
+				<fa-icon [icon]="faIcons.diceOption" class="mr-3"></fa-icon>
+			</div>
+			<div class="grid-child2 icon-grid flex justify-center">
+				<label class="label-user">City</label>
+			</div>
+			<div class="grid-child3 icon-grid">
+				<input class="w-full" type="text" pInputText [disabled]="true" value="{{peopleInfo.city}}">
+			</div>
+		</div>
+		<div class="grid-parent">
+			<div class="text-2xl grid-child1">
+				<fa-icon [icon]="faIcons.diceOption" class="mr-3"></fa-icon>
+			</div>
+			<div class="grid-child2 icon-grid flex justify-center">
+				<label class="label-user">Country</label>
+			</div>
+			<div class="grid-child3 icon-grid">
+				<input class="w-full" type="text" pInputText [disabled]="true" value="{{peopleInfo.countryId}}">
+			</div>
+		</div>
+		<div class="grid-parent">
+			<div class="text-2xl grid-child1">
+				<fa-icon [icon]="faIcons.diceOption" class="mr-3"></fa-icon>
+			</div>
+			<div class="grid-child2 icon-grid flex justify-center">
+				<label class="label-user">State</label>
+			</div>
+			<div class="grid-child3 icon-grid">
+				<input class="w-full" type="text" pInputText [disabled]="true" value="{{peopleInfo.state}}">
+			</div>
+		</div>
+		<div class="grid-parent">
+			<div class="text-2xl grid-child1">
+				<fa-icon [icon]="faIcons.diceOption" class="mr-3"></fa-icon>
+			</div>
+			<div class="grid-child2 icon-grid flex justify-center">
+				<label class="label-user">Postal Code</label>
+			</div>
+			<div class="grid-child3 icon-grid">
+				<input class="w-full" type="text" pInputText [disabled]="true" value="{{peopleInfo.postalCode}}">
+			</div>
+		</div>
+	</div>
+</div>

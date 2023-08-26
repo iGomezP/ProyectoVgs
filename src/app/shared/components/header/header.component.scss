@@ -1,12 +1,24 @@
 :host ::ng-deep {
   .p-sidebar-header {
     border-bottom: 1px solid #383838;
+    justify-content: center !important;
   }
+
   .p-slidemenu {
     border: none !important;
   }
   .p-sidebar-close-icon {
     font-size: 1.2rem !important;
+  }
+
+  .header-left .p-sidebar-header .p-sidebar-icon {
+    left: 50px !important;
+    margin-left: 0 !important;
+  }
+
+  p-slidemenu {
+    height: 80vh;
+    margin-top: 0.5rem;
   }
   .p-slidemenu .p-menuitem-separator {
     border-top: 1px solid #383838;
@@ -14,7 +26,7 @@
   }
 
   .p-button.p-button-text {
-    color: #000;
+    color: #fff;
   }
 
   .pi-user,
@@ -23,12 +35,64 @@
     font-size: 1.5rem;
   }
 
+  .p-sidebar,
+  .p-slidemenu {
+    background: rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(15px) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+  }
+
+  .p-slidemenu {
+    font-weight: 900;
+  }
+
+  .p-slidemenu-wrapper {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  // .p-menubar {
+  //   /* From https://css.glass */
+  //   background: rgba(255, 255, 255, 0.3) !important;
+  //   border-radius: 16px !important;
+  //   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+  //   backdrop-filter: blur(10px) !important;
+  //   -webkit-backdrop-filter: blur(10px) !important;
+  // }
+
   p-menubarsub {
     font-size: 1.25rem;
+    color: #000;
   }
 
   p-menubarsub,
   .p-menubar-end {
     margin: 0 auto;
   }
+
+  .p-menubar
+    .p-menuitem
+    > .p-menuitem-content
+    .p-menuitem-link
+    .p-menuitem-text {
+    color: #000 !important;
+    text-transform: capitalize !important;
+  }
+
+  .p-slidemenu-backward {
+    bottom: 20px !important;
+    left: 115px !important;
+
+    & span {
+      vertical-align: baseline;
+    }
+  }
+}
+
+.cristal-bar {
+  /* From https://css.glass */
+  background: rgba(114, 114, 114, 0.2) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
 }

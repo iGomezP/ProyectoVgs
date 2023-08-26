@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBackwardStep, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Sidebar } from 'primeng/sidebar';
 import { VgsApiService } from 'src/app/services/api/vgs-api.service';
 import { Platform } from 'src/app/models/platform.model';
@@ -16,7 +16,8 @@ export class HeaderComponent implements OnInit {
   mainMenuItems: MenuItem[] | undefined;
   sidebarStore: boolean = false;
   sidebarUser: boolean = false;
-  iconClose = faCircleXmark;
+  iconClose = faXmark;
+  backIcon = faBackwardStep;
   platforms: Platform[] = [];
 
   constructor(public generalAuxService: GeneralAuxService) {}
