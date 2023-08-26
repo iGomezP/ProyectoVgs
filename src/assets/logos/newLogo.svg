@@ -8,9 +8,11 @@
    <defs id="defs23">
       <style type="text/css">
          @font-face {
-            font-family: "Press Start 2P";
-            /* descriptors should match your styles */
-            src: url("assets/fonts/PressStart2P.ttf") format("truetype");
+            font-family: "press_start_2pregular";
+            src: url("assets/fonts/pressstart2p-webfont.woff") format("woff2"),
+               url("assets/fonts/pressstart2p-webfont.woff2") format("woff");
+            font-weight: normal;
+            font-style: normal;
          }
       </style>
       <linearGradient id="linearGradient26" inkscape:collect="always">
