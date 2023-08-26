@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="150" preserveAspectRatio="xMidYMid" version="1.1" viewBox="848 471 500 150">
+  <defs>
+    <filter id="filter25" x="-.16654" y="-.41834" width="1.3331" height="1.8367" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="25.015061" />
+    </filter>
+    <linearGradient id="linearGradient27" x1="684.22" x2="1415.9" y1="545.43" y2="545.43" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#cc1700" offset="0" />
+      <stop stop-color="#d88900" offset=".5" />
+      <stop stop-color="#e4fb00" offset="1" />
+    </linearGradient>
+    <style type="text/css" />
+  </defs>
+  <g class="logo__item" transform="matrix(.99806 0 0 .99997 65.543 1.9802)" data-item="Shape" data-item-type="shape" data-logo-item="">
+    <g class="logo__item__inner" transform="matrix(1.6917 0 0 1.6917 853.8 458.3)">
+      <g>
+        <circle cx="43" cy="51" r="41.2" fill="#fdfdfd" data-part-id="logo__item--shape_1__0" />
+      </g>
+    </g>
+  </g>
+  <g class="logo__item" transform="translate(63.673 .78548)" data-item="Image" data-item-type="image" data-logo-item="">
+    <g class="logo__item__inner" transform="matrix(.11789 0 0 .11789 837.48 457.5)">
+      <g>
+        <linearGradient id="logo__item--logo_0__0" x1="416.71" x2="416.71" y1="164.62" y2="693.4" gradientTransform="scale(1.1056 .90453)" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#f801bf" offset="0" />
+          <stop stop-color="#ffd801" offset="1" />
+        </linearGradient>
+        <path d="m530.8 429.4c28.4 13.7 52 37.6 70.3 60.6h151.9v-341.1c-284 0.9-528.7 205.9-584.6 478.3 0.8-1.6 1.9-2.9 2.7-4.5 78.8-164.4 240.1-250.7 359.7-193.3z" fill="url(#logo__item--logo_0__0)" data-part-id="logo__item--logo_0__0" />
+        <linearGradient id="logo__item--logo_0__1" x1="1001.2" x2="1001.2" y1="159.26" y2="686.88" gradientTransform="scale(1.0646 .93932)" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#f815c3" offset="0" />
+          <stop stop-color="#eac808" offset="1" />
+        </linearGradient>
+        <path d="m1002 434.2c121.9-49.5 275.3 44.7 344.7 211-47.4-272.4-276.7-482-561.7-495.6v340.4h143.3c19.9-23 44.6-44 73.7-55.8z" fill="url(#logo__item--logo_0__1)" data-part-id="logo__item--logo_0__1" />
+        <linearGradient id="logo__item--logo_0__2" x1="484.48" x2="484.48" y1="1400" y2="2092.7" gradientTransform="scale(1.5521 .6443)" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#eac808" offset="0" />
+          <stop stop-color="#f815c3" offset="1" />
+        </linearGradient>
+        <path d="m938.8 902h-375c-85.6 118-217.1 172.3-318.7 123.4-11-5.3-21.2-12.3-30.7-19.6 96.2 202.7 302.7 342.5 542 342.5 232.1 0 433.5-132.1 533.1-325.1-12 8.9-25 17.8-39.2 23.5-104.9 42.8-233.5-26.7-311.5-144.7zm-179.8 396.6c-141.3 0-255.9-44.6-255.9-99.6s114.6-99.6 255.9-99.6 255.9 44.6 255.9 99.6-114.6 99.6-255.9 99.6z" fill="url(#logo__item--logo_0__2)" data-part-id="logo__item--logo_0__2" />
+        <path d="m1332.5 715.2-43 15.6c30.7 303.3-156.2 281.2-156.2 281.2 257.8 35.3 199.2-296.8 199.2-296.8z" fill="#000000" opacity=".32" data-part-id="logo__item--logo_0__3" />
+        <path d="m317.67 1011.1c156.3 7.8 261.8-165.1 261.8-165.1h339.8l3.9-42-398.4-3.3s-289.1 343.5-359.4-47.1c0-0.1-3.9 249.7 152.3 257.5z" fill="#000000" opacity=".32" data-part-id="logo__item--logo_0__4" />
+        <g fill="#3a5675">
+          <path d="m389.6 809.8c18.5 16.9 51.4 11 73.4-13.1 16.9-18.5 22.5-42.3 16-60.1-0.7 14-7 29.2-18.6 41.9-22.1 24.1-55 30-73.4 13.1-4.3-3.9-7.4-8.8-9.4-14.2-0.6 12.6 3.2 24.3 12 32.4z" data-part-id="logo__item--logo_0__5" />
+          <path d="m381 644.3c16.9-18.5 22.6-42.4 15.9-60.1-0.7 14-7 29.2-18.6 41.9-22.1 24.1-55 30-73.4 13.1-4.3-3.9-7.4-8.8-9.4-14.2-0.6 12.7 3.3 24.4 12 32.4 18.6 16.9 51.4 11 73.5-13.1z" data-part-id="logo__item--logo_0__6" />
+          <path d="m225.6 825.4c18.5 16.9 51.3 11 73.4-13.1 16.9-18.5 22.6-42.3 16-60.1-0.7 14-7 29.2-18.6 41.8-22.1 24.1-55 30-73.4 13.1-4.3-3.9-7.4-8.8-9.4-14.2-0.7 12.7 3.2 24.5 12 32.5z" data-part-id="logo__item--logo_0__7" />
+        </g>
+        <g fill="#050505">
+          <path d="m460.4 778.4c11.6-12.7 17.9-27.8 18.6-41.9 0.6-12.7-3.2-24.4-12-32.4-18.5-16.9-51.4-11-73.4 13.1-16.9 18.5-22.6 42.3-16 60.1 2 5.4 5.1 10.3 9.4 14.2 18.5 16.9 51.4 11.1 73.4-13.1z" data-part-id="logo__item--logo_0__8" />
+          <path d="m378.4 626.1c11.6-12.7 17.9-27.9 18.6-41.9 0.6-12.7-3.3-24.4-12-32.4-18.5-16.9-51.4-11-73.4 13.1-16.9 18.5-22.5 42.3-15.9 60.1 2 5.4 5.1 10.3 9.4 14.2 18.4 16.9 51.2 11 73.3-13.1z" data-part-id="logo__item--logo_0__9" />
+          <path d="m296.4 794c11.6-12.7 17.8-27.8 18.6-41.8 0.6-12.7-3.3-24.4-12-32.4-18.5-16.9-51.4-11-73.4 13.1-16.9 18.5-22.5 42.3-16 60.1 2 5.4 5.1 10.3 9.4 14.2 18.5 16.8 51.3 11 73.4-13.2z" data-part-id="logo__item--logo_0__10" />
+        </g>
+        <g fill="#3a5675">
+          <path d="m1193.9 751h-44.9v8h44.9c17.3 0 31.3-14.1 31.3-31.3 0-1.8-0.2-2.3-0.5-4-2.6 14.8-15.3 27.3-30.8 27.3z" data-part-id="logo__item--logo_0__11" />
+          <path d="m1041.6 751c-15.5 0-28.2-12.6-30.7-27.3-0.3 1.7-0.5 2.8-0.5 4.6 0 17.3 14 30.7 31.2 30.7h44.4v-8z" data-part-id="logo__item--logo_0__12" />
+          <path d="m1117.5 824.6c-17.3 0-31.5-14-31.5-31.2v10.4c0 17.3 14.2 31.3 31.5 31.3s31.5-14 31.5-31.3v-10.4c0 17.2-14.2 31.2-31.5 31.2z" data-part-id="logo__item--logo_0__13" />
+        </g>
+        <path d="m1117.5 824.6c17.3 0 31.5-14 31.5-31.2v-42.4h44.9c15.5 0 28.2-12.6 30.7-27.3 0.3-1.7 0.5-3 0.5-4.8 0-17.3-14-30.9-31.3-30.9h-44.8v-47c0-17.3-14.2-31.2-31.5-31.2s-31.5 14-31.5 31.2v47h-44.4c-17.3 0-31.2 13-31.2 30.2 0 1.8 0.2 4.3 0.5 6 2.5 14.8 15.2 26.8 30.7 26.8h44.4v42.4c0 17.2 14.2 31.2 31.5 31.2z" fill="#050505" data-part-id="logo__item--logo_0__14" />
+        <path d="m759 1099.4c-141.3 0-255.9 44.6-255.9 99.6s114.6 99.6 255.9 99.6 255.9-44.6 255.9-99.6c0-55.1-114.6-99.6-255.9-99.6z" fill="#ffffff" data-part-id="logo__item--logo_0__15" />
+      </g>
+    </g>
+  </g>
+  <g transform="translate(91.898 .54121)">
+    <rect transform="matrix(.63289 0 0 .51051 446.6 267.55)" x="869.81" y="473.68" width="360.49" height="143.51" fill="url(#linearGradient27)" filter="url(#filter25)" stroke-width="2" style="mix-blend-mode:normal;paint-order:markers stroke fill" />
+    <text x="1002.9161" y="547.52069" fill="#ffffff" font-family="'Press Start 2P'" font-size="30.498px" stroke-width="5.0831" style="paint-order:markers stroke fill" xml:space="preserve"><tspan x="1002.9161" y="547.52069" stroke-width="5.0831">VgStore</tspan><tspan x="1002.9161" y="585.6438" /></text>
+    <text x="1014.8817" y="574.97778" fill="#ffffff" font-family="'Press Start 2P'" font-size="11.512px" stroke-width="1.9186" style="paint-order:markers stroke fill" xml:space="preserve"><tspan x="1014.8817" y="574.97778" stroke-width="1.9186">We <tspan fill="#ff0000" stroke="#000000">♥</tspan> Video Games</tspan></text>
+  </g>
+</svg>

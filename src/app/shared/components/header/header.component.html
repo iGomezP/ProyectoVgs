@@ -1,8 +1,8 @@
 <header *ngIf="!generalAuxService.hideBars" class="p-2">
 	<!-- Mobile -->
 	<div class="md:hidden flex items-center justify-evenly h-3rem cristal-bar">
-		<p-button styleClass="p-button-rounded p-button-text" (click)="sidebarStore = true" icon="pi pi-bars button-bars"
-			ngClass="ml-auto"></p-button>
+		<p-button styleClass="p-button-rounded p-button-text" (click)="sidebarStore = true"
+			icon="pi pi-bars button-bars"></p-button>
 		<p-sidebar #StoreSidebar [(visible)]="sidebarStore" styleClass="max-w-[70%] header-left" [modal]="true">
 			<ng-template pTemplate="header">
 				<div>
@@ -25,7 +25,7 @@
 
 		<div>
 			<a routerLink="/">
-				<img class="max-w-[12rem]" src="assets/logos/newLogo.svg" alt="Logo">
+				<img class="max-w-[12rem]" src="assets/logos/newLogo-e.svg" alt="Logo">
 			</a>
 		</div>
 		<app-user-buttons></app-user-buttons>
