@@ -188,7 +188,7 @@ export class UserButtonsComponent implements OnInit, OnDestroy {
         takeUntil(this._destroying$)
       )
       .subscribe((result: EventMessage) => {
-        console.log(result);
+        //console.log(result);
         // Checking for the forgot password error. Learn more about B2C error codes at
         // https://learn.microsoft.com/azure/active-directory-b2c/error-codes
         if (result.error && result.error.message.indexOf('AADB2C90118') > -1) {

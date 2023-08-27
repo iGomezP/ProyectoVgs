@@ -53,7 +53,7 @@ export class ProfileComponent implements OnInit {
     const userEmail = activeAccount?.idTokenClaims?.emails![0];
     this.userProfile.alias = userAlias;
     this.userProfile.email = userEmail;
-    console.log('UserInfo', this.userProfile);
+    //console.log('UserInfo', this.userProfile);
   }
 
   getAddressInfo(activeAccount: AccountInfo) {
@@ -69,6 +69,6 @@ export class ProfileComponent implements OnInit {
         streetAddress: userClaims['streetAddress'] as string,
       };
     }
-    console.log('PeopleInfo', this.peopleInfo);
+    //console.log('PeopleInfo', this.peopleInfo);
   }
 }
