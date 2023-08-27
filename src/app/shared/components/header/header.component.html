@@ -1,4 +1,4 @@
-<header *ngIf="!generalAuxService.hideBars" class="p-2">
+<header *ngIf="!generalAuxService.hideBars" class="p-2 md:relative md:z-10">
 	<!-- Mobile -->
 	<div class="md:hidden flex items-center justify-evenly h-3rem cristal-bar">
 		<p-button styleClass="p-button-rounded p-button-text" (click)="sidebarStore = true"
@@ -32,7 +32,7 @@
 	</div>
 	<!-- Desktop -->
 	<div class="hidden md:block">
-		<p-menubar [model]="mainMenuItems">
+		<p-menubar [model]="mainMenuItems" [autoHide]="true">
 			<ng-template pTemplate="start">
 				<div class="flex mx-3">
 					<a routerLink="/">

@@ -21,13 +21,13 @@ body {
     #29132e
   );
   background-size: 400% 400%;
-  animation: gradient 11s ease infinite;
+  animation: gradient 7s ease infinite;
   height: 100vh;
 }
 
 @keyframes gradient {
   0% {
-    background-position: 0% 50%;
+    background-position: 0% 80%;
   }
 
   50% {
@@ -35,7 +35,7 @@ body {
   }
 
   100% {
-    background-position: 0% 50%;
+    background-position: 0% 70%;
   }
 }
 

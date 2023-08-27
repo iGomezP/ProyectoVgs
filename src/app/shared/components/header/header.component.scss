@@ -43,6 +43,13 @@
     -webkit-backdrop-filter: blur(15px) !important;
   }
 
+  .p-menubar {
+    background: rgba(255, 255, 255, 0.144) !important;
+    backdrop-filter: blur(15px) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+  }
+
   .p-slidemenu {
     font-weight: 900;
   }
@@ -76,7 +83,7 @@
     > .p-menuitem-content
     .p-menuitem-link
     .p-menuitem-text {
-    color: #000 !important;
+    color: #fff;
     text-transform: capitalize !important;
   }
 
@@ -87,6 +94,54 @@
     & span {
       vertical-align: baseline;
     }
+  }
+
+  .p-menubar .p-menuitem.p-highlight > .p-menuitem-content,
+  .p-menubar-root-list > .p-menuitem-active > p-menubarsub > .p-submenu-list,
+  .p-menubar
+    .p-submenu-list
+    > .p-menuitem-active
+    > p-menubarsub
+    > .p-submenu-list {
+    background-color: #441e57;
+  }
+
+  .p-menubar .p-menuitem > .p-menuitem-content .p-menuitem-link:hover {
+    color: #000000;
+    background-color: #fff;
+    > span {
+      color: #000;
+    }
+
+    .p-submenu-icon {
+      color: #000 !important;
+    }
+  }
+
+  .p-menubar .p-menuitem.p-highlight > .p-menuitem-content {
+    &:hover {
+      background-color: #fff;
+    }
+  }
+
+  .p-menubar
+    .p-menubar-root-list
+    > .p-menuitem
+    > .p-menuitem-content
+    .p-menuitem-link
+    .p-submenu-icon,
+  .p-menubar
+    .p-menuitem
+    > .p-menuitem-content
+    .p-menuitem-link
+    .p-submenu-icon {
+    color: #fff;
+  }
+
+  .p-menubar .p-menubar-custom,
+  .p-menubar .p-menubar-end {
+    display: contents;
+    margin-left: 0;
   }
 }
 
