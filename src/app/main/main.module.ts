@@ -17,6 +17,11 @@ import { ProfileComponent } from './users/profile/profile.component';
 import { TabViewModule } from 'primeng/tabview';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserInfoComponent } from './users/profile/user-info/user-info.component';
+import { GamesComponent } from './games/games/games.component';
+import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
+import { TagModule } from 'primeng/tag';
+import { RatingModule } from 'primeng/rating';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -26,6 +31,7 @@ import { UserInfoComponent } from './users/profile/user-info/user-info.component
     RegisterComponent,
     ProfileComponent,
     UserInfoComponent,
+    GamesComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +47,10 @@ import { UserInfoComponent } from './users/profile/user-info/user-info.component
     FormsModule,
     TabViewModule,
     FontAwesomeModule,
+    DataViewModule,
+    TagModule,
+    RatingModule,
+    DropdownModule,
   ],
 })
 export class MainModule {}

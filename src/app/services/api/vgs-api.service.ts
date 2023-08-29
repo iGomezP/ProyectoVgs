@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map, shareReplay } from 'rxjs';
+import { GamesModel } from 'src/app/models/games.model';
 import { environment } from 'src/environments/environment';
 
 const AUTH_API = environment.baseUrl;
@@ -29,6 +30,14 @@ export class VgsApiService {
         headers: httpOptions,
         observe: 'response',
       }
+    );
+  }
+
+  getAllVideoGames(): Observable<GamesModel[] | any> {
+    const url = 'api/games';
+    return this.httpClient.get<GamesModel[]>(AUTH_API + url).pipe(
+      map((res) => res),
+      shareReplay()
     );
   }
 }

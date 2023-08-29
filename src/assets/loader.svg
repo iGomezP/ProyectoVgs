@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   style="margin: auto; background: none; display: block;"
+   width="304px"
+   height="304px"
+   viewBox="0 0 100 100"
+   preserveAspectRatio="xMidYMid"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="loader.svg"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs5" />
+  <sodipodi:namedview
+     id="namedview5"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="2.6743421"
+     inkscape:cx="151.81304"
+     inkscape:cy="158.3567"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5" />
+  <g
+     id="g3">
+    <circle
+       cx="60"
+       cy="50"
+       r="4"
+       fill="#e15b64"
+       id="circle1"
+       style="fill:#f801bf;fill-opacity:1">
+      <animate
+         attributeName="cx"
+         repeatCount="indefinite"
+         dur="1s"
+         values="95;35"
+         keyTimes="0;1"
+         begin="-0.67s" />
+      <animate
+         attributeName="fill-opacity"
+         repeatCount="indefinite"
+         dur="1s"
+         values="0;1;1"
+         keyTimes="0;0.2;1"
+         begin="-0.67s" />
+    </circle>
+    <circle
+       cx="60"
+       cy="50"
+       r="4"
+       fill="#e15b64"
+       id="circle2"
+       style="fill:#f801bf;fill-opacity:1">
+      <animate
+         attributeName="cx"
+         repeatCount="indefinite"
+         dur="1s"
+         values="95;35"
+         keyTimes="0;1"
+         begin="-0.33s" />
+      <animate
+         attributeName="fill-opacity"
+         repeatCount="indefinite"
+         dur="1s"
+         values="0;1;1"
+         keyTimes="0;0.2;1"
+         begin="-0.33s" />
+    </circle>
+    <circle
+       cx="60"
+       cy="50"
+       r="4"
+       fill="#e15b64"
+       id="circle3"
+       style="fill:#f801bf;fill-opacity:1">
+      <animate
+         attributeName="cx"
+         repeatCount="indefinite"
+         dur="1s"
+         values="95;35"
+         keyTimes="0;1"
+         begin="0s" />
+      <animate
+         attributeName="fill-opacity"
+         repeatCount="indefinite"
+         dur="1s"
+         values="0;1;1"
+         keyTimes="0;0.2;1"
+         begin="0s" />
+    </circle>
+  </g>
+  <g
+     transform="translate(-15 0)"
+     id="g5">
+    <path
+       d="M50 50L20 50A30 30 0 0 0 80 50Z"
+       fill="#f8b26a"
+       transform="rotate(90 50 50)"
+       id="path3" />
+    <path
+       d="M50 50L20 50A30 30 0 0 0 80 50Z"
+       fill="#f8b26a"
+       id="path4"
+       style="fill:#ffd801;fill-opacity:1">
+      <animateTransform
+         attributeName="transform"
+         type="rotate"
+         repeatCount="indefinite"
+         dur="1s"
+         values="0 50 50;45 50 50;0 50 50"
+         keyTimes="0;0.5;1" />
+    </path>
+    <path
+       d="M50 50L20 50A30 30 0 0 1 80 50Z"
+       fill="#f8b26a"
+       id="path5"
+       style="fill:#ffd801;fill-opacity:1">
+      <animateTransform
+         attributeName="transform"
+         type="rotate"
+         repeatCount="indefinite"
+         dur="1s"
+         values="0 50 50;-45 50 50;0 50 50"
+         keyTimes="0;0.5;1" />
+    </path>
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-size:12.4866px;font-family:'Retro Gaming';-inkscape-font-specification:'Retro Gaming, Normal';fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.16935;paint-order:markers stroke fill"
+     x="11.158723"
+     y="94.288773"
+     id="text5"><tspan
+       sodipodi:role="line"
+       id="tspan5"
+       style="stroke-width:2.16935;fill:#ffffff;fill-opacity:1"
+       x="11.158723"
+       y="94.288773">Loading....</tspan><tspan
+       sodipodi:role="line"
+       style="stroke-width:2.16935;fill:#ffffff;fill-opacity:1"
+       x="11.158723"
+       y="109.89703"
+       id="tspan6" /></text>
+</svg>

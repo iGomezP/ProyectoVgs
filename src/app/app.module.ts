@@ -28,6 +28,7 @@ import { environment } from 'src/environments/environment';
 import { ButtonModule } from 'primeng/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidebarModule } from 'primeng/sidebar';
+import { CurrencyPipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -94,6 +95,7 @@ import { SidebarModule } from 'primeng/sidebar';
     MsalService,
     MsalGuard,
     MsalBroadcastService,
+    CurrencyPipe,
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
 })

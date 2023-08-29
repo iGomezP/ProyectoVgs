@@ -9,12 +9,11 @@ import { ProfileComponent } from './main/users/profile/profile.component';
 import { BrowserUtils } from '@azure/msal-browser';
 import { MsalGuard } from '@azure/msal-angular';
 import { LoginFailedComponent } from './shared/components/login-failed/login-failed.component';
+import { GamesComponent } from './main/games/games/games.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: GamesComponent },
   { path: 'health', component: HealthCheckComponent, canActivate: [MsalGuard] },
-  { path: 'login', component: LoginComponent, canActivate: [MsalGuard] },
-  { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [MsalGuard] },
   { path: 'login-failed', component: LoginFailedComponent },
   { path: '**', component: NotFoundComponent },

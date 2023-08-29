@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { faBackwardStep, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { Sidebar } from 'primeng/sidebar';
-import { VgsApiService } from 'src/app/services/api/vgs-api.service';
 import { Platform } from 'src/app/models/platform.model';
-import { ToastService } from '../../../services/auxiliary/toast.service';
 import { GeneralAuxService } from 'src/app/services/auxiliary/general-aux.service';
 
 @Component({

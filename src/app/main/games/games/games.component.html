@@ -1,0 +1,66 @@
+<div class="card w-11/12" style="margin: 0 auto;">
+	<p-dataView #dv [value]="gamesList$ | async" [rows]="12" [paginator]="true" [sortField]="sortField"
+		[sortOrder]="sortOrder" layout="list">
+		<ng-template pTemplate="header">
+			<div class="flex flex-column md:flex-row md:justify-content-between">
+				<p-dropdown [options]="sortOptions" [(ngModel)]="selectedSortOption" placeholder="Sort By Price"
+					(onChange)="onSortChange($event)" styleClass="mb-0"></p-dropdown>
+			</div>
+			<div class="flex justify-content-end gap-3">
+				<p-dataViewLayoutOptions layout="list"></p-dataViewLayoutOptions>
+			</div>
+		</ng-template>
+		<ng-template let-game pTemplate="listItem">
+			<div class="flex flex-col xl:flex-row xl:items-start p-5 gap-6">
+				<img class="w-9/12 sm:w-64 xl:w-40 shadow-xl block xl:block mx-auto rounded-md"
+					[src]="game.cover ? game.cover : 'assets/logos/logoOnlyMovil.svg'" [alt]="game.name" />
+				<div class="flex flex-col sm:flex-row justify-between items-center xl:items-start flex-1 gap-6">
+					<div class="flex flex-col items-center sm:items-start gap-4">
+						<div class="text-2xl font-bold text-900 text-center">{{ game.name }}</div>
+						<p-rating [(ngModel)]="game.rating" [readonly]="true" [cancel]="false"></p-rating>
+						<div class="flex items-center gap-4">
+							<span class="flex items-center gap-2">
+								<i class="pi pi-tag"></i>
+								<span class="font-semibold">{{ game.genres }}</span>
+							</span>
+							<p-tag [value]="getStockText(game)" [severity]="getSeverity(game)"></p-tag>
+						</div>
+					</div>
+					<div class="flex sm:flex-col items-center sm:items-end gap-4 sm:gap-2">
+						<span class="text-2xl font-semibold">{{ game.price | currency:'':'symbol':'1.0-0' }}</span>
+						<button pButton icon="pi pi-shopping-cart" class="md:self-end mb-2 p-button-rounded"
+							[disabled]="game.stock === 0"></button>
+					</div>
+				</div>
+			</div>
+		</ng-template>
+		<ng-template let-game pTemplate="gridItem">
+			<div class="grid-container p-2">
+				<div class="p-6 border-2 border-solid border-[#883cae] rounded-md h-full">
+					<div class="flex flex-wrap items-center justify-between gap-2">
+						<span class="flex items-center gap-2">
+							<i class="pi pi-tag"></i>
+							<span class="font-semibold">{{ game.genres }}</span>
+						</span>
+						<p-tag [value]="getStockText(game)" [severity]="getSeverity(game)"></p-tag>
+					</div>
+					<div class="flex flex-col items-center gap-4 py-8">
+						<img class="w-9/12 shadow-xl rounded-md" [src]="game.cover ? game.cover : 'assets/logos/logoOnlyMovil.svg'"
+							[alt]="game.name" />
+						<div class="text-2xl font-bold text-900 text-center">{{ game.name }}</div>
+						<p-rating [ngModel]="game.rating" [readonly]="true" [cancel]="false"></p-rating>
+					</div>
+					<div class="flex items-center justify-between">
+						<span class="text-2xl font-semibold">{{ '$' + game.price }}</span>
+						<button pButton icon="pi pi-shopping-cart" class="p-button-rounded" [disabled]="game.stock === 0"></button>
+					</div>
+				</div>
+			</div>
+		</ng-template>
+		<ng-template pTemplate="empty">
+			<div class="flex items-center justify-center w-full">
+				<img src="assets/loader.svg" alt="">
+			</div>
+		</ng-template>
+	</p-dataView>
+</div>

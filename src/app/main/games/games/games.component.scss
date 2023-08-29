@@ -1,0 +1,77 @@
+:host ::ng-deep {
+  .p-dataview .p-dataview-content,
+  .p-paginator,
+  .p-dataview-header {
+    background: rgba(114, 114, 114, 0.2) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    color: #fff;
+  }
+
+  .p-dataview.p-dataview-list .p-dataview-content > .p-grid > div:first-child,
+  .p-dataview .p-paginator-bottom,
+  .p-dataview-header {
+    border: none;
+  }
+  .p-dataview-header {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+
+  .p-dataview-layout-options.p-selectbutton.p-buttonset {
+    display: flex;
+    gap: 0.5rem;
+    > button {
+      background-color: #883cae;
+      color: #fff;
+      border-color: #883cae;
+    }
+  }
+
+  .p-dataview.p-dataview-list .p-dataview-content > .p-grid > div {
+    width: 90%;
+    margin: 0 auto;
+    border-color: #883cae;
+  }
+
+  .grid-nogutter {
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .grid {
+    display: flex !important;
+    flex-wrap: wrap;
+  }
+
+  .p-dataview .p-paginator-bottom {
+    margin-top: 0.5rem;
+  }
+}
+
+.grid-container {
+  flex: 0 0 auto !important;
+  padding: 0.5rem;
+  width: 100%;
+
+  @media (min-width: 640px) {
+    width: 50%;
+  }
+
+  @media (min-width: 1024px) {
+    flex: 0 0 auto;
+    padding: 0.5rem !important;
+    width: 100%;
+  }
+
+  @media (min-width: 1280px) {
+    width: 33.3333%;
+  }
+}
