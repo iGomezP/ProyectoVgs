@@ -1,0 +1,144 @@
+<main class="w-11/12" style="margin: 0 auto;">
+	<div class="card">
+		<div *ngIf="gameDetails">
+			<!-- Mobile -->
+			<div class="flex justify-center xl:hidden">
+				<p-card header="{{gameDetails.name}}">
+					<ng-template pTemplate="header">
+						<img class="overflow-clip" [src]="gameDetails.cover ? gameDetails.cover : 'assets/logos/logoOnlyMovil.svg'"
+							alt="Cover">
+					</ng-template>
+					<div>
+						<p-rating [(ngModel)]="gameDetails.rating" [readonly]="true" [cancel]="false"></p-rating>
+						<div class="flex flex-row text-xs gap-2 my-2">
+							<div *ngFor="let genre of gameDetails.genres">
+								<p-chip styleClass="text-xs" [label]="genre"></p-chip>
+							</div>
+						</div>
+						<div class="mb-2 flex flex-col items-center justify-center bg-purple-100">
+							<h1>{{gameDetails.price | currency:'':'symbol':'1.0-0'}}</h1>
+							<p-button ngClass="w-full text-xl" styleClass="w-full p-button-raised p-button-lg " label="Buy Now">
+								<fa-icon [icon]="faIcons.money"></fa-icon>
+							</p-button>
+						</div>
+						<div class="my-2 py-1 bg-purple-100" *ngIf="gameDetails.summary">
+							<h3 class="text-center">Summary</h3>
+							<p-scrollPanel [style]="{ width: '100%', height: '150px'}">
+								<p>{{gameDetails.summary}}</p>
+							</p-scrollPanel>
+						</div>
+						<div *ngIf="gameDetails.screenshots" class="mt-5">
+							<p-carousel [value]="gameDetails.screenshots" [numVisible]="3" [numScroll]="1"
+								[responsiveOptions]="responsiveOptions">
+								<ng-template let-screen pTemplate="item">
+									<a [href]="screen">
+										<img [src]="screen" alt="Screenshot" class="carousel-image">
+									</a>
+								</ng-template>
+							</p-carousel>
+						</div>
+						<div class="py-1 bg-purple-100">
+							<h3 class="text-center">Available On</h3>
+							<p-scrollPanel [style]="{ width: '100%', height: '150px' }">
+								<div class="flex flex-col items-center justify-center gap-2">
+									<div *ngFor="let platform of gameDetails.platforms" class="w-full">
+										<p-tag>
+											<div class="flex items-center gap-2 tag-content">
+												<fa-icon [icon]="getPlatformIcon(platform)"></fa-icon>
+												<p>{{platform}}</p>
+											</div>
+										</p-tag>
+									</div>
+								</div>
+							</p-scrollPanel>
+						</div>
+						<div class="bg-purple-100 pt-1 my-1">
+							<h1 class="text-center">{{gameDetails.price | currency:'':'symbol':'1.0-0'}}</h1>
+							<p-button ngClass="w-full text-xl" styleClass="w-full p-button-raised p-button-lg " label="Buy Now">
+								<fa-icon [icon]="faIcons.money"></fa-icon>
+							</p-button>
+						</div>
+					</div>
+				</p-card>
+			</div>
+
+			<!-- Desktop -->
+			<div class="max-sm:hidden lg:block p-5 back-cristal">
+				<div class="grid grid-cols-3 gap-4 justify-center">
+					<!-- Left Panel -->
+					<div class="text-center desktop-panel">
+						<img class="w-8/12 rounded-md"
+							[src]="gameDetails.cover ? gameDetails.cover : 'assets/logos/logoOnlyMovil.svg'" alt="Cover">
+					</div>
+
+					<!-- Center Panel -->
+					<div class="desktop-panel">
+						<h1>{{gameDetails.name}}</h1>
+						<div class="flex flex-col gap-1">
+							<div>
+								<p-rating [(ngModel)]="gameDetails.rating" [readonly]="true" [cancel]="false"></p-rating>
+							</div>
+							<div class="flex flex-row text-xs gap-2 my-2">
+								<div *ngFor="let genre of gameDetails.genres">
+									<p-chip styleClass="text-large" [label]="genre"></p-chip>
+								</div>
+							</div>
+							<div class="my-2 py-1" *ngIf="gameDetails.summary">
+								<h3 class="text-center">Summary</h3>
+								<p-scrollPanel [style]="{ width: '100%', height: '250px'}">
+									<p>{{gameDetails.summary}}</p>
+								</p-scrollPanel>
+							</div>
+						</div>
+					</div>
+
+					<!-- Right Panel -->
+					<div class="text-center desktop-panel grid items-center">
+						<div class="w-11/12 justify-self-center">
+							<h1 class="text-center">{{gameDetails.price | currency:'':'symbol':'1.0-0'}}</h1>
+							<p-button ngClass="w-full text-xl" styleClass="w-full p-button-raised p-button-lg " label="Buy Now">
+								<fa-icon [icon]="faIcons.money"></fa-icon>
+							</p-button>
+						</div>
+						<div class="w-11/12 justify-self-center">
+							<h3 class="text-center">Available On</h3>
+							<div class="grid grid-cols-2 gap-2">
+								<div *ngFor="let platform of gameDetails.platforms" class="w-full">
+									<p-tag>
+										<div class="flex items-center gap-2 tag-content">
+											<fa-icon [icon]="getPlatformIcon(platform)"></fa-icon>
+											<p>{{platform}}</p>
+										</div>
+									</p-tag>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Footer -->
+				<div>
+					<div *ngIf="gameDetails.screenshots" class="mt-5">
+						<p-carousel [value]="gameDetails.screenshots" [numVisible]="3" [numScroll]="1"
+							[responsiveOptions]="responsiveOptions">
+							<ng-template let-screen pTemplate="item">
+								<a [href]="screen">
+									<img [src]="screen" alt="Screenshot" class="carousel-image">
+								</a>
+							</ng-template>
+						</p-carousel>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Loading Logo -->
+		<div *ngIf="!gameDetails">
+			<div class="flex items-center justify-center w-full">
+				<img src="assets/loader.svg" alt="">
+			</div>
+		</div>
+
+
+
+
+	</div>
+</main>

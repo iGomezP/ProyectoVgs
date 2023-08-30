@@ -10,10 +10,11 @@ import { BrowserUtils } from '@azure/msal-browser';
 import { MsalGuard } from '@azure/msal-angular';
 import { LoginFailedComponent } from './shared/components/login-failed/login-failed.component';
 import { GamesComponent } from './main/games/games/games.component';
+import { GameCardComponent } from './main/games/game-card/game-card.component';
 
 const routes: Routes = [
   { path: '', component: GamesComponent },
-  { path: 'health', component: HealthCheckComponent, canActivate: [MsalGuard] },
+  { path: 'game-details/:slug', component: GameCardComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [MsalGuard] },
   { path: 'login-failed', component: LoginFailedComponent },
   { path: '**', component: NotFoundComponent },

@@ -22,67 +22,24 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.mainMenuItems = [
       {
-        label: 'GAMES',
-        items: [
-          {
-            label: 'By Platform',
-            items: [
-              { label: 'Pc' },
-              { label: 'Ps4' },
-              { label: 'Ps5' },
-              { label: 'Xbox Series' },
-              { label: 'Nintendo Switch' },
-            ],
-          },
-          {
-            label: 'By Genre',
-            items: [
-              { label: 'Singleplayer' },
-              { label: 'Multiplayer' },
-              { label: 'Action' },
-              { label: '1st Person' },
-              { label: '3rd Person' },
-              { label: 'Simulation' },
-              { label: 'Sports' },
-              { label: 'Cooperative' },
-              { label: 'FPS' },
-              { label: 'Adventure' },
-              { label: 'Racing' },
-              { label: 'Strategy' },
-            ],
-          },
-          {
-            label: 'By Price',
-            items: [
-              { label: 'Games Under $1' },
-              { label: 'Games Under $5' },
-              { label: 'Games Under $10' },
-              { label: 'Games Under $15' },
-              { label: 'Games Under $20' },
-              { label: 'Games for $20 and more' },
-            ],
-          },
-        ],
+        label: 'All Games',
+        routerLink: '/',
+        command: () => this.closeSideBar(),
       },
       {
-        label: 'PSN',
-        items: [
-          { label: 'PSN GAMES' },
-          { label: 'PSN GIFT CARDS' },
-          { label: 'PS PLUS MEMBERSHIPS' },
-        ],
+        label: 'PlayStation',
+        routerLink: '/',
+        command: () => this.closeSideBar(),
       },
       {
-        label: 'XBOX',
-        items: [
-          { label: 'XBOX GAMES' },
-          { label: 'XBOX LIVE GIFT CARDS' },
-          { label: 'XBOX GAME PASS' },
-        ],
+        label: 'Xbox',
+        routerLink: '/',
+        command: () => this.closeSideBar(),
       },
       {
-        label: 'NINTENDO',
-        items: [{ label: 'Switch GAMES' }, { label: 'eSHop GIFT CARDS' }],
+        label: 'Nintendo',
+        routerLink: '/',
+        command: () => this.closeSideBar(),
       },
       // {
       //   label: 'Server Health Check',

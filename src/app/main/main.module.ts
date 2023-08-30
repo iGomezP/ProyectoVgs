@@ -22,6 +22,13 @@ import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
 import { DropdownModule } from 'primeng/dropdown';
+import { GameCardComponent } from './games/game-card/game-card.component';
+import { RouterModule } from '@angular/router';
+import { CardModule } from 'primeng/card';
+import { CarouselModule } from 'primeng/carousel';
+import { ChipModule } from 'primeng/chip';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -32,6 +39,7 @@ import { DropdownModule } from 'primeng/dropdown';
     ProfileComponent,
     UserInfoComponent,
     GamesComponent,
+    GameCardComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +59,12 @@ import { DropdownModule } from 'primeng/dropdown';
     TagModule,
     RatingModule,
     DropdownModule,
+    RouterModule,
+    CardModule,
+    CarouselModule,
+    ChipModule,
+    ScrollPanelModule,
+    DialogModule,
   ],
 })
 export class MainModule {}

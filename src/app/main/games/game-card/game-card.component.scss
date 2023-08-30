@@ -1,0 +1,51 @@
+.carousel-image {
+  width: 100%;
+}
+
+.tag-content {
+  font-size: small;
+}
+
+.desktop-panel {
+  border: 1px solid #883cae;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+
+.fade.in {
+  opacity: 1;
+}
+
+:host ::ng-deep {
+  div p-tag.p-element span.p-tag.p-component {
+    width: 100%;
+  }
+
+  .p-scrollpanel .p-scrollpanel-bar,
+  .p-scrollpanel:active .p-scrollpanel-bar {
+    background: #430064;
+    opacity: 1;
+
+    @media (min-width: 1024px) {
+      background: #883cae;
+    }
+  }
+
+  .p-carousel-prev,
+  .p-carousel-next {
+    color: #fff !important;
+  }
+}

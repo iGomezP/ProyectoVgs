@@ -1,19 +1,19 @@
 export interface GamesModel {
   name: string;
-  platforms: [];
+  platforms: string[];
   price: number;
   rating: number;
-  releaseYear: Date;
-  genres: [];
-  createdAt: Date;
-  updatedAt: Date;
+  releaseYear: string;
+  genres: string[];
+  createdAt: string;
+  updatedAt: string;
   createdBy: string;
   updatedBy: string;
   actualStatus: string;
   summary: string;
   slug: string;
-  screenshots: [];
-  publishers: [];
+  screenshots: string[];
+  publishers: string[];
   stock: number;
-  coverImage: string;
+  cover: string;
 }

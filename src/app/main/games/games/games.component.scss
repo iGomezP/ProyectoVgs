@@ -1,4 +1,8 @@
 :host ::ng-deep {
+  p-dropdown#menu-drop div.p-dropdown {
+    width: 100% !important;
+  }
+
   .p-dataview .p-dataview-content,
   .p-paginator,
   .p-dataview-header {

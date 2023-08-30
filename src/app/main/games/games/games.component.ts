@@ -3,6 +3,7 @@ import { GamesModel } from 'src/app/models/games.model';
 import { VgsApiService } from 'src/app/services/api/vgs-api.service';
 import { Observable, map } from 'rxjs';
 import { SelectItem } from 'primeng/api';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-games',
@@ -17,6 +18,7 @@ export class GamesComponent implements OnInit {
   sortField!: string;
   selectedSortOption = 'default';
   layout: string = 'list';
+  detailsIcon = faCircleInfo;
 
   constructor(private vgsService: VgsApiService) {}
 

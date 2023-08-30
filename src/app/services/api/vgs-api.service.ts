@@ -40,4 +40,9 @@ export class VgsApiService {
       shareReplay()
     );
   }
+
+  getGameBySlug(slug: string): Observable<GamesModel | any> {
+    const url = `api/games/${slug}`;
+    return this.httpClient.get<GamesModel>(AUTH_API + url);
+  }
 }
