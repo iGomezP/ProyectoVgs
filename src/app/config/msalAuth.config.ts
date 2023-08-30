@@ -48,7 +48,7 @@ export const msalConfig: Configuration = {
     allowNativeBroker: false,
     loggerOptions: {
       loggerCallback(logLevel: LogLevel, message: string) {
-        console.log(message);
+        //console.log(message);
       },
       logLevel: LogLevel.Trace,
       piiLoggingEnabled: false,

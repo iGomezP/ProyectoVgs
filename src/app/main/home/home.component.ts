@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService } from 'src/app/services/api/weather.service';
 import { WeatherForecast } from 'src/app/models/weather.model';
 import { GeneralAuxService } from '../../services/auxiliary/general-aux.service';
+import { ToastService } from 'src/app/services/auxiliary/toast.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private weatherService: WeatherService,
-    private generalAuxService: GeneralAuxService
+    private generalAuxService: GeneralAuxService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +29,8 @@ export class HomeComponent implements OnInit {
         this.weatherForecast = data;
       },
       error: (error) => {
-        console.log('error', error);
+        //console.log('error', error);
+        this.toastService.showToast(ToastService.ERROR, 'Error', error.error);
       },
     });
   }

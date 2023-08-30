@@ -4,6 +4,7 @@ import { AccountInfo } from '@azure/msal-browser';
 import { faIdBadge, faAddressBook } from '@fortawesome/free-solid-svg-icons';
 import { IPeople } from 'src/app/models/people.model';
 import { IUser } from 'src/app/models/user.model';
+import { ToastService } from 'src/app/services/auxiliary/toast.service';
 
 @Component({
   selector: 'app-profile',
@@ -30,7 +31,10 @@ export class ProfileComponent implements OnInit {
     email: '',
   };
 
-  constructor(private authService: MsalService) {}
+  constructor(
+    private authService: MsalService,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
     this.activeAccount = this.getActiveAccount();
@@ -38,7 +42,8 @@ export class ProfileComponent implements OnInit {
       this.getBasicInfo(this.activeAccount);
       this.getAddressInfo(this.activeAccount);
     } else {
-      console.log('No user');
+      //console.log('No user');
+      this.toastService.showToast(ToastService.ERROR, 'Error', 'No user');
     }
   }
 

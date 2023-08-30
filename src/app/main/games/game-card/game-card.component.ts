@@ -11,6 +11,7 @@ import {
   faApple,
   faAndroid,
 } from '@fortawesome/free-brands-svg-icons';
+import { ToastService } from 'src/app/services/auxiliary/toast.service';
 
 @Component({
   selector: 'app-game-card',
@@ -33,7 +34,8 @@ export class GameCardComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private vgsApiService: VgsApiService
+    private vgsApiService: VgsApiService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -42,10 +44,11 @@ export class GameCardComponent implements OnInit {
       next: (res) => {
         this.gameDetails = res;
         this.sortItems(this.gameDetails);
-        console.log(this.gameDetails);
+        //console.log(this.gameDetails);
       },
       error: (error) => {
-        console.log(error);
+        //console.log(error);
+        this.toastService.showToast(ToastService.ERROR, 'Error', error.error);
       },
     });
 
